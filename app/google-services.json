@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "382669790856",
+    "project_id": "travel-danang-app",
+    "storage_bucket": "travel-danang-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:382669790856:android:4bffda4732977868a5c93d",
+        "android_client_info": {
+          "package_name": "com.example.travel_danang_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "382669790856-h0gnf52esrdt7bli1hmr55ol0mc5rr51.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCX8FzbSMzabNz6pXTEb2j35rzYb9iuSUg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "382669790856-h0gnf52esrdt7bli1hmr55ol0mc5rr51.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
