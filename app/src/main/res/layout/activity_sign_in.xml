@@ -31,6 +31,7 @@
         app:layout_constraintTop_toBottomOf="@id/logo">
 
         <EditText
+            android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@drawable/edt_bg"
@@ -51,7 +52,7 @@
             android:layout_marginTop="8dp">
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/passwordEditText"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:background="@drawable/edt_bg"
@@ -74,6 +75,7 @@
                 tools:ignore="Autofill,LabelFor" />
 
             <ImageView
+                android:id="@+id/passwordToggle"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
@@ -87,9 +89,10 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
+            android:id="@+id/forgotPassTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/inter_regular"
             android:gravity="end"
             android:text="Quên mật khẩu?"
@@ -97,6 +100,7 @@
             android:textSize="13sp" />
 
         <RelativeLayout
+            android:id="@+id/signInButton"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:layout_marginTop="12dp"
@@ -134,6 +138,7 @@
             android:textSize="13sp" />
 
         <TextView
+            android:id="@+id/signUpTextView"
             android:layout_marginStart="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

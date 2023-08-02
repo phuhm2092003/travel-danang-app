@@ -7,12 +7,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.example.travel_danang_app.MainActivity;
 import com.example.travel_danang_app.R;
 import com.example.travel_danang_app.ui.singin.SignInActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
-
     public static final int DELAY_MILLIS = 2000;
 
     @Override
@@ -20,7 +22,16 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        // Khởi chạy màng hình đăng nhập sau thời gian trể
-        new Handler().postDelayed(() -> startActivity(new Intent(this, SignInActivity.class)), DELAY_MILLIS);
+        // Kiểm tra người dùng đăng nhập trước đó hay chưa
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        } else {
+            new Handler().postDelayed(() -> {
+                startActivity(new Intent(this, SignInActivity.class));
+                finish();
+            }, DELAY_MILLIS);
+        }
     }
 }

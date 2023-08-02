@@ -12,14 +12,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.Traveldanangapp"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.forgotpass.ForgotPasswordActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.signup.SignUpActivity"
             android:exported="false" />
         <activity
-            android:theme="@style/Theme.SignIn.SignUp"
             android:name=".ui.singin.SignInActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.SignIn.SignUp" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />

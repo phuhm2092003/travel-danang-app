@@ -2,13 +2,25 @@ package com.example.travel_danang_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.travel_danang_app.databinding.ActivityMainBinding;
+import com.example.travel_danang_app.ui.singin.SignInActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
+public class MainActivity extends AppCompatActivity {
+    private ActivityMainBinding mainBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(mainBinding.getRoot());
+
+        mainBinding.textView.setOnClickListener(view -> {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(this, SignInActivity.class));
+            finish();
+        });
     }
 }
