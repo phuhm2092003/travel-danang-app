@@ -15,6 +15,11 @@ public class UtilsDataInput {
         return email.matches(regexEmail);
     }
 
+    public static boolean isString(String fullname) {
+        String regex = "^\\D+$";
+        return fullname.matches(regex);
+    }
+
     public static boolean isPasswordLengthValid(String password) {
         return password.length() >= MAX_LENGTH;
     }

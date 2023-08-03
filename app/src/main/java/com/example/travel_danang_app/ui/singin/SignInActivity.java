@@ -99,7 +99,7 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
     @Override
     public void onSignInSuccessAsUser() {
         startActivity(new Intent(this, MainActivity.class));
-        finish();
+        finishAffinity();
     }
 
     @Override

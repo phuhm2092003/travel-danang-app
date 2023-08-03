@@ -90,7 +90,8 @@
 
         <TextView
             android:id="@+id/forgotPassTextView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_gravity="end"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/inter_regular"
@@ -144,7 +145,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:fontFamily="@font/inter_regular"
+            android:fontFamily="@font/inter_medium"
             android:text="Đăng ký"
             android:textColor="@color/BluePrimary"
             android:textSize="13sp" />
