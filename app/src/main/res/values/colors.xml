@@ -9,8 +9,10 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="PrimaryColor">#F79009</color>
+    <!--Text-->
     <color name="TextColor1">#344054</color>
     <color name="HintTextColor">#98A2B3</color>
+
     <color name="GrayColor1">#667085</color>
     <color name="GrayColor2">#D0D5DD</color>
     <color name="GrayColor3">#F2F4F7</color>

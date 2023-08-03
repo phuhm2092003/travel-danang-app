@@ -15,6 +15,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:theme="@style/Theme.ForgotPassword"
             android:name=".ui.forgotpass.ForgotPasswordActivity"
             android:exported="false" />
         <activity
