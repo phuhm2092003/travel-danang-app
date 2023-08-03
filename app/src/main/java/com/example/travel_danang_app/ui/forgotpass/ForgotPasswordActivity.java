@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.example.travel_danang_app.R;
 import com.example.travel_danang_app.databinding.ActivityForgotPasswordBinding;
+import com.example.travel_danang_app.utils.UtilsMessage;
 import com.example.travel_danang_app.utils.UtilsProgressDialog;
 
 public class ForgotPasswordActivity extends AppCompatActivity implements ForgotPasswordContract.View {
@@ -19,6 +20,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
     private ActivityForgotPasswordBinding binding;
     private ForgotPasswordPresenter forgotPasswordPresenter;
     private UtilsProgressDialog utilsProgressDialog;
+    private UtilsMessage utilsMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
 
         forgotPasswordPresenter = new ForgotPasswordPresenter(this);
         utilsProgressDialog = new UtilsProgressDialog(this);
+        utilsMessage = new UtilsMessage(this);
 
         initToolbar();
         setListeners();
@@ -51,18 +54,17 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
 
     @Override
     public void onDataInputEmpty() {
-        Toast.makeText(this, DATA_EMPTY_MESSGAE, Toast.LENGTH_SHORT).show();
+        utilsMessage.showMessage(DATA_EMPTY_MESSGAE);
     }
 
     @Override
     public void onEmailInValid() {
-        Toast.makeText(this, EMAIL_INVALID_MESSAGE, Toast.LENGTH_SHORT).show();
+        utilsMessage.showMessage(EMAIL_INVALID_MESSAGE);
     }
 
     @Override
     public void showLoading() {
         utilsProgressDialog.showLoadingDialog(LOADING_MESSAGE);
-        binding.message.setVisibility(View.GONE);
     }
 
     @Override
@@ -72,13 +74,11 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
 
     @Override
     public void onSendEmailForgotPasswordSuccess() {
-        binding.message.setText(SEND_EMAIL_SUCCESS_MESSAGE);
-        binding.message.setVisibility(View.VISIBLE);
+        utilsMessage.showMessage(SEND_EMAIL_SUCCESS_MESSAGE);
     }
 
     @Override
     public void onSendEmailForgotPasswordFailed() {
-        binding.message.setText(SEND_EMAIL_FAILED_MESSAGE);
-        binding.message.setVisibility(View.VISIBLE);
+        utilsMessage.showMessage(SEND_EMAIL_FAILED_MESSAGE);
     }
 }

@@ -15,6 +15,7 @@ import com.example.travel_danang_app.R;
 import com.example.travel_danang_app.databinding.ActivitySignInBinding;
 import com.example.travel_danang_app.ui.forgotpass.ForgotPasswordActivity;
 import com.example.travel_danang_app.ui.signup.SignUpActivity;
+import com.example.travel_danang_app.utils.UtilsMessage;
 import com.example.travel_danang_app.utils.UtilsProgressDialog;
 
 public class SignInActivity extends AppCompatActivity implements SignInContract.View {
@@ -24,6 +25,7 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
     private ActivitySignInBinding binding;
     private SignInPresenter signInPresenter;
     private UtilsProgressDialog utilsProgressDialog;
+    private UtilsMessage utilsMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
 
         signInPresenter = new SignInPresenter(this);
         utilsProgressDialog = new UtilsProgressDialog(this);
+        utilsMessage = new UtilsMessage(this);
 
         setListeners();
     }
@@ -78,7 +81,7 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
 
     @Override
     public void onDataInputEmpty() {
-        Toast.makeText(this, DATA_INPUT_EMPTY_MESSAGE, Toast.LENGTH_SHORT).show();
+        utilsMessage.showMessage(DATA_INPUT_EMPTY_MESSAGE);
     }
 
     @Override
@@ -104,6 +107,6 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
 
     @Override
     public void onSignInFailed() {
-        Toast.makeText(this, SIGN_IN_FAILED_MESSSAGE, Toast.LENGTH_SHORT).show();
+        utilsMessage.showMessage(SIGN_IN_FAILED_MESSSAGE);
     }
 }

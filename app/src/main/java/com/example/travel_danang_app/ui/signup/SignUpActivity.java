@@ -14,12 +14,13 @@ import android.widget.Toast;
 import com.example.travel_danang_app.R;
 import com.example.travel_danang_app.databinding.ActivitySignUpBinding;
 import com.example.travel_danang_app.ui.singin.SignInActivity;
+import com.example.travel_danang_app.utils.UtilsMessage;
 import com.example.travel_danang_app.utils.UtilsProgressDialog;
 
 public class SignUpActivity extends AppCompatActivity implements SignUpContract.View {
     public static final String DATA_EMPTY_MESSAGE = "Vui lòng nhập đầy đủ thông tin";
     public static final String EMAIL_INVALID_MESSAGE = "Email sai định dạng";
-    public static final String FULLNAME_INVALID_MESSAGE = "Tên chưa ký tự số";
+    public static final String FULLNAME_INVALID_MESSAGE = "Tên có chứa ký tự số";
     public static final String PASSWORD_LENGTH_INVALID_MESSGAE = "Mật khẩu phải ít nhất 6 ký tự";
     public static final String LOADING_MESSGAE = "Vui lòng chờ...";
     public static final String SIGN_UP_SUCESS_MESSAGE = "Đăng ký thành công";
@@ -27,7 +28,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
     private ActivitySignUpBinding signUpBinding;
     private SignUpPresenter signUpPresenter;
     private UtilsProgressDialog utilsProgressDialog;
-
+    private UtilsMessage utilsMessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
 
         signUpPresenter = new SignUpPresenter(this);
         utilsProgressDialog = new UtilsProgressDialog(this);
+        utilsMessage = new UtilsMessage(this);
 
         initToolbar();
         setListeners();
@@ -80,22 +82,22 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
 
     @Override
     public void onDataInputEmpty() {
-        Toast.makeText(this, DATA_EMPTY_MESSAGE, Toast.LENGTH_SHORT).show();
+        utilsMessage.showMessage(DATA_EMPTY_MESSAGE);
     }
 
     @Override
     public void onEmailInValid() {
-        Toast.makeText(this, EMAIL_INVALID_MESSAGE, Toast.LENGTH_SHORT).show();
+        utilsMessage.showMessage(EMAIL_INVALID_MESSAGE);
     }
 
     @Override
     public void onFullNameInvalid() {
-        Toast.makeText(this, FULLNAME_INVALID_MESSAGE, Toast.LENGTH_SHORT).show();
+        utilsMessage.showMessage(FULLNAME_INVALID_MESSAGE);
     }
 
     @Override
     public void onPasswordLengthInValid() {
-        Toast.makeText(this, PASSWORD_LENGTH_INVALID_MESSGAE, Toast.LENGTH_SHORT).show();
+        utilsMessage.showMessage(PASSWORD_LENGTH_INVALID_MESSGAE);
     }
 
     @Override
@@ -110,7 +112,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
 
     @Override
     public void signUpSuccess() {
-        Toast.makeText(this, SIGN_UP_SUCESS_MESSAGE, Toast.LENGTH_SHORT).show();
+        utilsMessage.showMessage(SIGN_UP_SUCESS_MESSAGE);
         learDataEditText();
     }
 
@@ -123,7 +125,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
 
     @Override
     public void signUpFailed(String err) {
-        Toast.makeText(this, SIGN_UP_FAILED_MESSAGE, Toast.LENGTH_SHORT).show();
+        utilsMessage.showMessage(SIGN_UP_FAILED_MESSAGE);
         Log.e("TAG", "signUpFailed: " + err);
     }
 }
