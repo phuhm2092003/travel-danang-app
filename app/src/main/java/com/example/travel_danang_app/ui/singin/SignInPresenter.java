@@ -41,7 +41,7 @@ public class SignInPresenter implements SignInContract.Presenter {
                 .addOnCompleteListener(task -> {
                     view.hideLoading();
                     if (task.isSuccessful()) {
-                        callApiGetRoleUser();
+                        callApiGetRoleUserById();
                     } else {
                         view.onSignInFailed();
                     }
@@ -49,7 +49,7 @@ public class SignInPresenter implements SignInContract.Presenter {
     }
 
     @Override
-    public void callApiGetRoleUser() {
+    public void callApiGetRoleUserById() {
         String idCurrentUser = firebaseAuth.getCurrentUser().getUid();
         Call<GetRoleUserResponse> call = apiService.getRoleUser(idCurrentUser);
         call.enqueue(new Callback<GetRoleUserResponse>() {

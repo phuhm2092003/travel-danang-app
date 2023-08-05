@@ -1,15 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/HintTextColor"
-    tools:context=".ui.user.HomeFragment">
+    android:background="@color/GrayColor3"
+    android:orientation="vertical"
+    tools:context=".ui.user.home.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/PrimaryColor">
+
+            <EditText
+                android:id="@+id/searhEditText"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="12dp"
+                android:background="@drawable/edt_bg1"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="12dp"
+                android:ems="10"
+                android:fontFamily="@font/inter_regular"
+                android:hint="Tìm kiếm"
+                android:inputType="textPersonName"
+                android:paddingHorizontal="12dp"
+                android:textColorHint="@color/HintTextColor"
+                android:textSize="13sp"
+                tools:ignore="TouchTargetSizeCheck" />
+        </RelativeLayout>
+
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/image_slider"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            app:iss_auto_cycle="true"
+            app:iss_delay="2000"
+            app:iss_error_image="@drawable/photo_default"
+            app:iss_period="1000"
+            app:iss_selected_dot="@drawable/bg_indicator_selected"
+            app:iss_title_background="@android:color/transparent"
+            app:iss_unselected_dot="@drawable/bg_indicator_unselected" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="12dp"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:gravity="center_vertical"
+                    android:text="ĐIỂM DU LỊCH TẠI ĐÀ NẴNG"
+                    android:textColor="@color/PrimaryColor"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/locationsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

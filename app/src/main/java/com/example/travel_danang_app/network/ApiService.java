@@ -7,11 +7,11 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface ApiService {
-    @FormUrlEncoded
     @POST(ManaUrl.GET_ROLE_USER)
-    Call<GetRoleUserResponse> getRoleUser(@Field("id") String id);
+    Call<GetRoleUserResponse> getRoleUser(@Path("id") String id);
     @FormUrlEncoded
     @POST(ManaUrl.ADD_USER_USER_ROLE)
     Call<AddUserResponse> addUser(@Field("id") String id);

@@ -10,7 +10,7 @@ import android.os.Bundle;
 
 import com.example.travel_danang_app.databinding.ActivityMainBinding;
 import com.example.travel_danang_app.ui.user.FavouriteFragment;
-import com.example.travel_danang_app.ui.user.HomeFragment;
+import com.example.travel_danang_app.ui.user.home.HomeFragment;
 import com.example.travel_danang_app.ui.user.SettingFragment;
 
 public class MainActivity extends AppCompatActivity {

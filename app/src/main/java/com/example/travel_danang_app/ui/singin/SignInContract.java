@@ -18,6 +18,6 @@ public interface SignInContract {
     interface Presenter {
         void signIn(String email, String password);
 
-        void callApiGetRoleUser();
+        void callApiGetRoleUserById();
     }
 }
