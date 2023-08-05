@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginHorizontal="4dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/demo"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textSize="14sp"
+            android:fontFamily="@font/inter_medium"
+            android:ellipsize="end"
+            android:textColor="@color/TextColor1"
+            android:text="Thác Nước Hòa Phú Thành"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:textSize="13sp"
+            android:ellipsize="end"
+            android:fontFamily="@font/inter_regular"
+            android:textColor="@color/TextColor1"
+            android:text="Khu trượt thác này có sông và suối chảy qua với chiều dài trên 3km, len lỏi quanh những đỉnh đồi dưới bóng cây xanh mát nên sẽ rất lý tưởng để du khách có thể thỏa sức trượt thác mát lạnh và thư giãn đầu óc. Mỗi xuồng trượt thác có 2 người nên rất thích hợp cho bạn chơi cùng đồng đội thử cảm giác mạnh."/>
+        <RelativeLayout
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:drawablePadding="4dp"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/favouriteCheck"
+                android:drawableStart="@drawable/map_pin_fill"
+                android:ellipsize="end"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/inter_regular"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="Hoà Phú, Hòa Vang, Đà Nẵng, Việt Nam"
+                android:textColor="@color/TextColor1"
+                android:textSize="13sp" />
+
+            <CheckBox
+                android:id="@+id/favouriteCheck"
+                android:layout_width="24sp"
+                android:layout_height="24sp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:button="@drawable/button_checkbox_custom" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

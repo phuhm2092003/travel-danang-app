@@ -22,6 +22,5 @@ public interface SignUpContract {
     interface Presenter {
         void signUp(String email, String fullname, String password);
 
-        void callAddUserApi(String id);
     }
 }

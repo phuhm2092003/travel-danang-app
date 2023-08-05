@@ -8,16 +8,12 @@ public interface SignInContract {
 
         void hideLoading();
 
-        void onSignInSuccessAsAdmin();
-
-        void onSignInSuccessAsUser();
+        void onSignInSucces();
 
         void onSignInFailed();
     }
 
     interface Presenter {
         void signIn(String email, String password);
-
-        void callApiGetRoleUserById();
     }
 }

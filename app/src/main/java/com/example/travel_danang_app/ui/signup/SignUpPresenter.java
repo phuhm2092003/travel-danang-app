@@ -1,26 +1,13 @@
 package com.example.travel_danang_app.ui.signup;
 
 import android.net.Uri;
-import android.util.Log;
 
-import androidx.annotation.NonNull;
-
-import com.example.travel_danang_app.model.AddUserResponse;
-import com.example.travel_danang_app.network.ApiClient;
-import com.example.travel_danang_app.network.ApiService;
 import com.example.travel_danang_app.utils.UtilsDataInput;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.Objects;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class SignUpPresenter implements SignUpContract.Presenter {
     private SignUpContract.View view;
@@ -39,6 +26,7 @@ public class SignUpPresenter implements SignUpContract.Presenter {
         view.showLoading();
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
+                    view.hideLoading();
                     if (task.isSuccessful()) {
                         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
@@ -48,17 +36,14 @@ public class SignUpPresenter implements SignUpContract.Presenter {
 
                         currentUser.updateProfile(profileUpdates)
                                 .addOnCompleteListener(task1 -> {
-                                    view.hideLoading();
                                     if (task1.isSuccessful()) {
-                                        callAddUserApi(currentUser.getUid());
-                                        Log.d("TAG", "User profile updated.");
+
                                     }
                                 });
-
+                        view.signUpSuccess();
                         firebaseAuth.signOut();
                     } else {
                         view.signUpFailed(Objects.requireNonNull(task.getException()).toString());
-                        view.hideLoading();
                     }
                 });
     }
@@ -87,33 +72,4 @@ public class SignUpPresenter implements SignUpContract.Presenter {
         return true;
     }
 
-    @Override
-    public void callAddUserApi(String id) {
-        ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        Call<AddUserResponse> call = apiService.addUser(id);
-        call.enqueue(new Callback<AddUserResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<AddUserResponse> call, @NonNull Response<AddUserResponse> response) {
-                if (response.isSuccessful()) {
-                    AddUserResponse addUserResponse = response.body();
-                    if (addUserResponse != null) {
-                        String status = addUserResponse.getStatus();
-                        if (status.equals("Success")) {
-                            view.signUpSuccess();
-                            Log.e("TAG", "Add user to database success");
-                        } else {
-                            Log.e("TAG", "Add user to database failed");
-                        }
-                    }
-                } else {
-                    Log.e("TAG", "Call api add user error");
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<AddUserResponse> call, @NonNull Throwable t) {
-                Log.e("TAG", "Call api add user failed: " + t);
-            }
-        });
-    }
 }

@@ -95,12 +95,7 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
     }
 
     @Override
-    public void onSignInSuccessAsAdmin() {
-        Log.e("TAG", "onSignInSuccessAsAdmin");
-    }
-
-    @Override
-    public void onSignInSuccessAsUser() {
+    public void onSignInSucces() {
         startActivity(new Intent(this, MainActivity.class));
         finishAffinity();
     }
