@@ -8,7 +8,7 @@ public interface SignInContract {
 
         void hideLoading();
 
-        void onSignInSucces();
+        void onSignInSuccess();
 
         void onSignInFailed();
     }

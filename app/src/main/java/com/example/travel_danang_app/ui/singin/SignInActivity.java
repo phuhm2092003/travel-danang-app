@@ -95,7 +95,7 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
     }
 
     @Override
-    public void onSignInSucces() {
+    public void onSignInSuccess() {
         startActivity(new Intent(this, MainActivity.class));
         finishAffinity();
     }

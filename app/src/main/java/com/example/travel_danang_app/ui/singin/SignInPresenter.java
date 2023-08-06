@@ -25,7 +25,7 @@ public class SignInPresenter implements SignInContract.Presenter {
                 .addOnCompleteListener(task -> {
                     view.hideLoading();
                     if (task.isSuccessful()) {
-                        view.onSignInSucces();
+                        view.onSignInSuccess();
                     } else {
                         view.onSignInFailed();
                     }
