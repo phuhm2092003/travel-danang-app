@@ -1,8 +1,8 @@
-package com.example.travel_danang_app.ui.user;
+package com.example.travel_danang_app.ui;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.travel_danang_app.R;
 import com.example.travel_danang_app.databinding.FragmentSettingBinding;
-import com.example.travel_danang_app.ui.signup.SignUpActivity;
 import com.example.travel_danang_app.ui.singin.SignInActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

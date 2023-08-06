@@ -22,16 +22,27 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        // Kiểm tra người dùng đăng nhập trước đó hay chưa
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser != null) {
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
+        if (isUserSignIn()) {
+            launchMainActivity();
         } else {
-            new Handler().postDelayed(() -> {
-                startActivity(new Intent(this, SignInActivity.class));
-                finish();
-            }, DELAY_MILLIS);
+            launchSignInActivity();
         }
+    }
+
+    private boolean isUserSignIn() {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        return currentUser != null;
+    }
+
+    private void launchMainActivity() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
+    }
+
+    private void launchSignInActivity() {
+        new Handler().postDelayed(() -> {
+            startActivity(new Intent(this, SignInActivity.class));
+            finish();
+        }, DELAY_MILLIS);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.travel_danang_app.ui.user.home;
+package com.example.travel_danang_app.ui.home;
 
 
 import com.example.travel_danang_app.model.Location;

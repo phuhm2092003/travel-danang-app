@@ -6,9 +6,9 @@ public interface ForgotPasswordContract {
 
         void onEmailInValid();
 
-        void showLoading();
+        void onShowLoading();
 
-        void hideLoading();
+        void onHideLoading();
 
         void onSendEmailForgotPasswordSuccess();
 

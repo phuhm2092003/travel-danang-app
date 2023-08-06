@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.method.TransformationMethod;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.example.travel_danang_app.MainActivity;
 import com.example.travel_danang_app.R;
@@ -20,7 +18,7 @@ import com.example.travel_danang_app.utils.UtilsProgressDialog;
 
 public class SignInActivity extends AppCompatActivity implements SignInContract.View {
     public static final String DATA_INPUT_EMPTY_MESSAGE = "Vui lòng nhập đầy đủ thông tin";
-    public static final String SIGN_IN_FAILED_MESSSAGE = "Đăng nhập không thành công";
+    public static final String SIGN_IN_FAILED_MESSAGE = "Đăng nhập không thành công";
     public static final String LOADING_MESSAGE = "Vui lòng chờ....";
     private ActivitySignInBinding binding;
     private SignInPresenter signInPresenter;
@@ -33,11 +31,14 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
         binding = ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        initObjects();
+        setListeners();
+    }
+
+    private void initObjects() {
         signInPresenter = new SignInPresenter(this);
         utilsProgressDialog = new UtilsProgressDialog(this);
         utilsMessage = new UtilsMessage(this);
-
-        setListeners();
     }
 
     private void setListeners() {
@@ -85,12 +86,12 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
     }
 
     @Override
-    public void showLoading() {
+    public void onShowLoading() {
         utilsProgressDialog.showLoadingDialog(LOADING_MESSAGE);
     }
 
     @Override
-    public void hideLoading() {
+    public void onHideLoading() {
         utilsProgressDialog.hideLoadingDialog();
     }
 
@@ -102,6 +103,6 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
 
     @Override
     public void onSignInFailed() {
-        utilsMessage.showMessage(SIGN_IN_FAILED_MESSSAGE);
+        utilsMessage.showMessage(SIGN_IN_FAILED_MESSAGE);
     }
 }

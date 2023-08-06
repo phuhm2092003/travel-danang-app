@@ -9,9 +9,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.example.travel_danang_app.databinding.ActivityMainBinding;
-import com.example.travel_danang_app.ui.user.FavouriteFragment;
-import com.example.travel_danang_app.ui.user.home.HomeFragment;
-import com.example.travel_danang_app.ui.user.SettingFragment;
+import com.example.travel_danang_app.ui.FavouriteFragment;
+import com.example.travel_danang_app.ui.home.HomeFragment;
+import com.example.travel_danang_app.ui.SettingFragment;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mainBinding;

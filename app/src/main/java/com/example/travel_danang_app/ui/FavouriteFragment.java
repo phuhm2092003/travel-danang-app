@@ -1,4 +1,4 @@
-package com.example.travel_danang_app.ui.user;
+package com.example.travel_danang_app.ui;
 
 import android.os.Bundle;
 

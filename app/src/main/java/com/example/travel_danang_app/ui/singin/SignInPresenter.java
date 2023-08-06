@@ -5,12 +5,12 @@ import com.example.travel_danang_app.utils.UtilsDataInput;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignInPresenter implements SignInContract.Presenter {
-    private SignInContract.View view;
-    private FirebaseAuth firebaseAuth;
+    private final SignInContract.View view;
+    private final FirebaseAuth mAuth;
 
     public SignInPresenter(SignInContract.View view) {
         this.view = view;
-        this.firebaseAuth = FirebaseAuth.getInstance();
+        this.mAuth= FirebaseAuth.getInstance();
     }
 
     @Override
@@ -20,10 +20,10 @@ public class SignInPresenter implements SignInContract.Presenter {
             return;
         }
 
-        view.showLoading();
-        firebaseAuth.signInWithEmailAndPassword(email, password)
+        view.onShowLoading();
+        mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
-                    view.hideLoading();
+                    view.onHideLoading();
                     if (task.isSuccessful()) {
                         view.onSignInSuccess();
                     } else {

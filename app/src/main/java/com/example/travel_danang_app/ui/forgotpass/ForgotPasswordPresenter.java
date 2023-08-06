@@ -6,7 +6,7 @@ import com.example.travel_danang_app.utils.UtilsDataInput;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ForgotPasswordPresenter implements ForgotPasswordContract.Presenter {
-    private ForgotPasswordContract.View view;
+    private final ForgotPasswordContract.View view;
 
     public ForgotPasswordPresenter(ForgotPasswordContract.View view) {
         this.view = view;
@@ -18,10 +18,10 @@ public class ForgotPasswordPresenter implements ForgotPasswordContract.Presenter
             return;
         }
 
-        view.showLoading();
+        view.onShowLoading();
         FirebaseAuth auth = FirebaseAuth.getInstance();
         auth.sendPasswordResetEmail(emailAddress).addOnCompleteListener(task -> {
-            view.hideLoading();
+            view.onHideLoading();
             if (task.isSuccessful()) {
                 view.onSendEmailForgotPasswordSuccess();
             } else {

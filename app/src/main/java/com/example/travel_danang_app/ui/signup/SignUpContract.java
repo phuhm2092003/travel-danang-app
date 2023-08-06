@@ -10,9 +10,9 @@ public interface SignUpContract {
 
         void onPasswordLengthInValid();
 
-        void showLoading();
+        void onShowLoading();
 
-        void hideLoading();
+        void onHideLoading();
 
         void signUpSuccess();
 

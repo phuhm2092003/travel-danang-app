@@ -28,12 +28,15 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
         binding = ActivityForgotPasswordBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        initObjects();
+        initToolbar();
+        setListeners();
+    }
+
+    private void initObjects() {
         forgotPasswordPresenter = new ForgotPasswordPresenter(this);
         utilsProgressDialog = new UtilsProgressDialog(this);
         utilsMessage = new UtilsMessage(this);
-
-        initToolbar();
-        setListeners();
     }
 
     private void initToolbar() {
@@ -48,7 +51,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
 
     private void onSendEmailButtonClick() {
         String email = binding.emailEditText.getText().toString().trim();
-
         forgotPasswordPresenter.sendEmailForgotPassword(email);
     }
 
@@ -63,12 +65,12 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
     }
 
     @Override
-    public void showLoading() {
+    public void onShowLoading() {
         utilsProgressDialog.showLoadingDialog(LOADING_MESSAGE);
     }
 
     @Override
-    public void hideLoading() {
+    public void onHideLoading() {
         utilsProgressDialog.hideLoadingDialog();
     }
 

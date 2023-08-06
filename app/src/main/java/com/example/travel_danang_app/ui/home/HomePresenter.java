@@ -1,4 +1,4 @@
-package com.example.travel_danang_app.ui.user.home;
+package com.example.travel_danang_app.ui.home;
 
 
 import android.util.Log;
@@ -18,8 +18,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomePresenter implements HomeContract.Presenter {
-    private HomeContract.View view;
-    private ApiService apiService;
+    private final HomeContract.View view;
+    private final ApiService apiService;
 
     public HomePresenter(HomeContract.View view) {
         this.view = view;
@@ -60,18 +60,18 @@ public class HomePresenter implements HomeContract.Presenter {
                 if(response.isSuccessful()){
                     boolean status = response.body().isStatus();
                     if(status){
-                        Log.e("TAG", "onResponse: Add Favourte success" );
+                        Log.e("TAG", "Add favourte success" );
                     }else {
-                        Log.e("TAG", "onResponse: Add Favourte failed" );
+                        Log.e("TAG", "Add favourte failed" );
                     }
                 }else {
-                    Log.e("TAG", "onResponse: Add Favourte error" );
+                    Log.e("TAG", "Add favourte error" );
                 }
             }
 
             @Override
             public void onFailure(Call<FavouriteResponse> call, Throwable t) {
-                Log.e("TAG", "Call Api falied" );
+                Log.e("TAG", "Call api AddFavouriteLocation falied" );
             }
         });
     }
@@ -85,18 +85,18 @@ public class HomePresenter implements HomeContract.Presenter {
                 if(response.isSuccessful()){
                     boolean status = response.body().isStatus();
                     if(status){
-                        Log.e("TAG", "onResponse: Remove Favourte success" );
+                        Log.e("TAG", "Remove favourte success" );
                     }else {
-                        Log.e("TAG", "onResponse: Remove Favourte failed" );
+                        Log.e("TAG", "Remove favourte failed" );
                     }
                 }else {
-                    Log.e("TAG", "onResponse: Remove Favourte error" );
+                    Log.e("TAG", "Remove favourte error" );
                 }
             }
 
             @Override
             public void onFailure(Call<FavouriteResponse> call, Throwable t) {
-                Log.e("TAG", "Remove Api falied" );
+                Log.e("TAG", "Remove api RemoveFavouriteLocation falied" );
             }
         });
     }

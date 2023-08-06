@@ -1,4 +1,4 @@
-package com.example.travel_danang_app.ui.user.home;
+package com.example.travel_danang_app.ui.home;
 
 import android.os.Bundle;
 
@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
@@ -31,19 +30,22 @@ public class HomeFragment extends Fragment implements HomeContract.View, ItemLoc
     private LocationAdapter locationAdapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         homeBinding = FragmentHomeBinding.inflate(inflater, container, false);
-        View view = homeBinding.getRoot();
-        return view;
+        return homeBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initObjects();
+        homePresenter.onCallGetLocationsApi(); // Load locations
         setUpImageSlider();
-        homePresenter = new HomePresenter(this);
-        homePresenter.onCallGetLocationsApi();
         setUpRecyclerView();
+    }
+
+    private void initObjects() {
+        homePresenter = new HomePresenter(this);
     }
 
     private void setUpImageSlider() {

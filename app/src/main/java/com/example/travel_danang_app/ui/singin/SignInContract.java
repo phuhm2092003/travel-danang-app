@@ -4,9 +4,9 @@ public interface SignInContract {
     interface View {
         void onDataInputEmpty();
 
-        void showLoading();
+        void onShowLoading();
 
-        void hideLoading();
+        void onHideLoading();
 
         void onSignInSuccess();
 

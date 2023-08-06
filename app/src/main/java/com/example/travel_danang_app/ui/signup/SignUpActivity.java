@@ -2,18 +2,16 @@ package com.example.travel_danang_app.ui.signup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.method.TransformationMethod;
 import android.util.Log;
 import android.widget.EditText;
-import android.widget.Toast;
+
 
 import com.example.travel_danang_app.R;
 import com.example.travel_danang_app.databinding.ActivitySignUpBinding;
-import com.example.travel_danang_app.ui.singin.SignInActivity;
 import com.example.travel_danang_app.utils.UtilsMessage;
 import com.example.travel_danang_app.utils.UtilsProgressDialog;
 
@@ -35,12 +33,15 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
         signUpBinding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(signUpBinding.getRoot());
 
+        iniObjects();
+        initToolbar();
+        setListeners();
+    }
+
+    private void iniObjects() {
         signUpPresenter = new SignUpPresenter(this);
         utilsProgressDialog = new UtilsProgressDialog(this);
         utilsMessage = new UtilsMessage(this);
-
-        initToolbar();
-        setListeners();
     }
 
     private void initToolbar() {
@@ -101,12 +102,12 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
     }
 
     @Override
-    public void showLoading() {
+    public void onShowLoading() {
         utilsProgressDialog.showLoadingDialog(LOADING_MESSGAE);
     }
 
     @Override
-    public void hideLoading() {
+    public void onHideLoading() {
         utilsProgressDialog.hideLoadingDialog();
     }
 

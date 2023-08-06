@@ -1,9 +1,7 @@
 package com.example.travel_danang_app.adapter;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,7 +18,7 @@ import java.util.List;
 
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.LocationViewHolder> {
     private List<Location> list;
-    private ItemLocationClicked itemLocationClicked;
+    private final ItemLocationClicked itemLocationClicked;
 
     public LocationAdapter(ItemLocationClicked itemLocationClicked) {
         this.itemLocationClicked = itemLocationClicked;
