@@ -12,5 +12,8 @@ public interface HomeContract {
 
     interface Presenter {
         void onCallGetLocationsApi();
+
+        void addFavouriteLocation(String idCurrentUser, int idLocation);
+        void removeFavouriteLocation(String idCurrentUser, int idLocation);
     }
 }

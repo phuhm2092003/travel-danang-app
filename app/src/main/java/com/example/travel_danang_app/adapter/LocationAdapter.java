@@ -3,6 +3,7 @@ package com.example.travel_danang_app.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,12 +11,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.travel_danang_app.R;
 import com.example.travel_danang_app.databinding.ItemLocationBinding;
+import com.example.travel_danang_app.interfaces.ItemLocationClicked;
 import com.example.travel_danang_app.model.Location;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.LocationViewHolder> {
     private List<Location> list;
+    private ItemLocationClicked itemLocationClicked;
+
+    public LocationAdapter(ItemLocationClicked itemLocationClicked) {
+        this.itemLocationClicked = itemLocationClicked;
+    }
 
     public void setListLocation(List<Location> locations) {
         this.list = locations;
@@ -52,6 +61,22 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         } else {
             holder.locationBinding.favouriteCheckButton.setChecked(false);
         }
+
+        holder.locationBinding.favouriteCheckButton.setOnClickListener(view -> {
+            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+            if (currentUser == null) {
+                return;
+            }
+
+            if (holder.locationBinding.favouriteCheckButton.isChecked()) {
+                // Yêu thích địa điểm
+                itemLocationClicked.onFavouriteLocationClick(true, currentUser.getUid(), location.getId());
+            } else {
+                // Bỏ yêu thích
+                itemLocationClicked.onFavouriteLocationClick(false, currentUser.getUid(), location.getId());
+            }
+        });
     }
 
     @Override

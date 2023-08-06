@@ -3,6 +3,7 @@ package com.example.travel_danang_app.ui.user.home;
 
 import android.util.Log;
 
+import com.example.travel_danang_app.model.FavouriteResponse;
 import com.example.travel_danang_app.model.Location;
 import com.example.travel_danang_app.network.ApiClient;
 import com.example.travel_danang_app.network.ApiService;
@@ -46,6 +47,56 @@ public class HomePresenter implements HomeContract.Presenter {
             @Override
             public void onFailure(Call<ArrayList<Location>> call, Throwable t) {
                 Log.e("TAG", "Call get location API failed: " + t);
+            }
+        });
+    }
+
+    @Override
+    public void addFavouriteLocation(String idCurrentUser, int idLocation) {
+        Call<FavouriteResponse> call = apiService.addFavourite(idCurrentUser, idLocation);
+        call.enqueue(new Callback<FavouriteResponse>() {
+            @Override
+            public void onResponse(Call<FavouriteResponse> call, Response<FavouriteResponse> response) {
+                if(response.isSuccessful()){
+                    boolean status = response.body().isStatus();
+                    if(status){
+                        Log.e("TAG", "onResponse: Add Favourte success" );
+                    }else {
+                        Log.e("TAG", "onResponse: Add Favourte failed" );
+                    }
+                }else {
+                    Log.e("TAG", "onResponse: Add Favourte error" );
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FavouriteResponse> call, Throwable t) {
+                Log.e("TAG", "Call Api falied" );
+            }
+        });
+    }
+
+    @Override
+    public void removeFavouriteLocation(String idCurrentUser, int idLocation) {
+        Call<FavouriteResponse> call = apiService.removeFavourite(idCurrentUser, idLocation);
+        call.enqueue(new Callback<FavouriteResponse>() {
+            @Override
+            public void onResponse(Call<FavouriteResponse> call, Response<FavouriteResponse> response) {
+                if(response.isSuccessful()){
+                    boolean status = response.body().isStatus();
+                    if(status){
+                        Log.e("TAG", "onResponse: Remove Favourte success" );
+                    }else {
+                        Log.e("TAG", "onResponse: Remove Favourte failed" );
+                    }
+                }else {
+                    Log.e("TAG", "onResponse: Remove Favourte error" );
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FavouriteResponse> call, Throwable t) {
+                Log.e("TAG", "Remove Api falied" );
             }
         });
     }

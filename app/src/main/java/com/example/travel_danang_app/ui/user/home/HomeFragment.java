@@ -11,20 +11,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import com.denzcoskun.imageslider.constants.AnimationTypes;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
-import com.example.travel_danang_app.R;
+
 import com.example.travel_danang_app.adapter.LocationAdapter;
 import com.example.travel_danang_app.databinding.FragmentHomeBinding;
+import com.example.travel_danang_app.interfaces.ItemLocationClicked;
 import com.example.travel_danang_app.model.Location;
 
-import java.math.BigInteger;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment implements HomeContract.View {
+public class HomeFragment extends Fragment implements HomeContract.View, ItemLocationClicked {
     private FragmentHomeBinding homeBinding;
     private HomePresenter homePresenter;
     private LocationAdapter locationAdapter;
@@ -65,7 +66,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         LinearLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         homeBinding.locationsRecyclerView.setLayoutManager(layoutManager);
 
-        locationAdapter = new LocationAdapter();
+        locationAdapter = new LocationAdapter(this);
         homeBinding.locationsRecyclerView.setAdapter(locationAdapter);
         homeBinding.locationsRecyclerView.setNestedScrollingEnabled(false);
     }
@@ -73,5 +74,14 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Override
     public void onDisplayLocations(List<Location> locations) {
         locationAdapter.setListLocation(locations);
+    }
+
+    @Override
+    public void onFavouriteLocationClick(boolean isFavourite, String idCurrentUser, int idLocation) {
+        if(isFavourite){
+            homePresenter.addFavouriteLocation(idCurrentUser, idLocation);
+        }else {
+            homePresenter.removeFavouriteLocation(idCurrentUser, idLocation);
+        }
     }
 }
