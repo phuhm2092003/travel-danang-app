@@ -61,18 +61,12 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         }
 
         holder.locationBinding.favouriteCheckButton.setOnClickListener(view -> {
-            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-
-            if (currentUser == null) {
-                return;
-            }
-
             if (holder.locationBinding.favouriteCheckButton.isChecked()) {
                 // Yêu thích địa điểm
-                itemLocationClicked.onFavouriteLocationClick(true, currentUser.getUid(), location.getId());
+                itemLocationClicked.onFavouriteLocationClick(true, location.getId());
             } else {
                 // Bỏ yêu thích
-                itemLocationClicked.onFavouriteLocationClick(false, currentUser.getUid(), location.getId());
+                itemLocationClicked.onFavouriteLocationClick(false, location.getId());
             }
         });
     }

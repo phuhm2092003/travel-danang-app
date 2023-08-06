@@ -20,18 +20,17 @@ import retrofit2.Response;
 public class HomePresenter implements HomeContract.Presenter {
     private final HomeContract.View view;
     private final ApiService apiService;
+    private final FirebaseUser currentUser;
 
     public HomePresenter(HomeContract.View view) {
         this.view = view;
         this.apiService = ApiClient.getClient().create(ApiService.class);
+        this.currentUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     @Override
     public void onCallGetLocationsApi() {
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser == null) {
-            return;
-        }
+        if (!isUserSignIn()) return;
         Call<ArrayList<Location>> call = apiService.getLocations(currentUser.getUid());
         call.enqueue(new Callback<ArrayList<Location>>() {
             @Override
@@ -52,52 +51,60 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     @Override
-    public void addFavouriteLocation(String idCurrentUser, int idLocation) {
-        Call<FavouriteResponse> call = apiService.addFavourite(idCurrentUser, idLocation);
+    public void addFavouriteLocation(int idLocation) {
+        if (!isUserSignIn()) return;
+
+        Call<FavouriteResponse> call = apiService.addFavourite(currentUser.getUid(), idLocation);
         call.enqueue(new Callback<FavouriteResponse>() {
             @Override
             public void onResponse(Call<FavouriteResponse> call, Response<FavouriteResponse> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     boolean status = response.body().isStatus();
-                    if(status){
-                        Log.e("TAG", "Add favourte success" );
-                    }else {
-                        Log.e("TAG", "Add favourte failed" );
+                    if (status) {
+                        Log.e("TAG", "Add favourte success");
+                    } else {
+                        Log.e("TAG", "Add favourte failed");
                     }
-                }else {
-                    Log.e("TAG", "Add favourte error" );
+                } else {
+                    Log.e("TAG", "Add favourte error");
                 }
             }
 
             @Override
             public void onFailure(Call<FavouriteResponse> call, Throwable t) {
-                Log.e("TAG", "Call api AddFavouriteLocation falied" );
+                Log.e("TAG", "Call api AddFavouriteLocation falied");
             }
         });
     }
 
     @Override
-    public void removeFavouriteLocation(String idCurrentUser, int idLocation) {
-        Call<FavouriteResponse> call = apiService.removeFavourite(idCurrentUser, idLocation);
+    public void removeFavouriteLocation(int idLocation) {
+        if (!isUserSignIn()) return;
+        Call<FavouriteResponse> call = apiService.removeFavourite(currentUser.getUid(), idLocation);
         call.enqueue(new Callback<FavouriteResponse>() {
             @Override
             public void onResponse(Call<FavouriteResponse> call, Response<FavouriteResponse> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     boolean status = response.body().isStatus();
-                    if(status){
-                        Log.e("TAG", "Remove favourte success" );
-                    }else {
-                        Log.e("TAG", "Remove favourte failed" );
+                    if (status) {
+                        Log.e("TAG", "Remove favourte success");
+                    } else {
+                        Log.e("TAG", "Remove favourte failed");
                     }
-                }else {
-                    Log.e("TAG", "Remove favourte error" );
+                } else {
+                    Log.e("TAG", "Remove favourte error");
                 }
             }
 
             @Override
             public void onFailure(Call<FavouriteResponse> call, Throwable t) {
-                Log.e("TAG", "Remove api RemoveFavouriteLocation falied" );
+                Log.e("TAG", "Remove api RemoveFavouriteLocation falied");
             }
         });
     }
+
+    private boolean isUserSignIn() {
+        return currentUser != null;
+    }
+
 }

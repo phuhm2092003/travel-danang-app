@@ -79,11 +79,11 @@ public class HomeFragment extends Fragment implements HomeContract.View, ItemLoc
     }
 
     @Override
-    public void onFavouriteLocationClick(boolean isFavourite, String idCurrentUser, int idLocation) {
+    public void onFavouriteLocationClick(boolean isFavourite, int idLocation) {
         if(isFavourite){
-            homePresenter.addFavouriteLocation(idCurrentUser, idLocation);
+            homePresenter.addFavouriteLocation(idLocation);
         }else {
-            homePresenter.removeFavouriteLocation(idCurrentUser, idLocation);
+            homePresenter.removeFavouriteLocation(idLocation);
         }
     }
 }
