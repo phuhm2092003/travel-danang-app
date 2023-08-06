@@ -1,5 +1,7 @@
 package com.example.travel_danang_app.utils;
 
+import android.widget.EditText;
+
 public class UtilsDataInput {
     public static final int MAX_LENGTH = 6;
 
@@ -22,5 +24,11 @@ public class UtilsDataInput {
 
     public static boolean isPasswordLengthValid(String password) {
         return password.length() >= MAX_LENGTH;
+    }
+
+    public static void clearDataEditText(EditText ...arrInput) {
+        for (EditText edt : arrInput) {
+            edt.setText(null);
+        }
     }
 }

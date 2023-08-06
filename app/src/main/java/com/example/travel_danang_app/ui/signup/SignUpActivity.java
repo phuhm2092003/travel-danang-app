@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import com.example.travel_danang_app.R;
 import com.example.travel_danang_app.databinding.ActivitySignUpBinding;
+import com.example.travel_danang_app.utils.UtilsDataInput;
 import com.example.travel_danang_app.utils.UtilsMessage;
 import com.example.travel_danang_app.utils.UtilsProgressDialog;
 
@@ -27,6 +28,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
     private SignUpPresenter signUpPresenter;
     private UtilsProgressDialog utilsProgressDialog;
     private UtilsMessage utilsMessage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,14 +116,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
     @Override
     public void signUpSuccess() {
         utilsMessage.showMessage(SIGN_UP_SUCESS_MESSAGE);
-        learDataEditText();
-    }
-
-    private void learDataEditText() {
-        EditText[] arr = {signUpBinding.emailEditText, signUpBinding.fullnameEditText, signUpBinding.passwordEditText};
-        for (EditText edt : arr) {
-            edt.setText(null);
-        }
+        UtilsDataInput.clearDataEditText(signUpBinding.emailEditText, signUpBinding.fullnameEditText, signUpBinding.passwordEditText);
     }
 
     @Override

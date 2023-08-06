@@ -15,13 +15,17 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:theme="@style/Theme.ForgotPassword"
-            android:name=".ui.forgotpass.ForgotPasswordActivity"
+            android:theme="@style/Theme.ChangePassword"
+            android:name=".ui.setting.changepass.ChangePasswordActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.forgotpass.ForgotPasswordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.ForgotPassword" />
+        <activity
             android:name=".ui.signup.SignUpActivity"
-            android:theme="@style/Theme.SignIn.SignUp"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.SignIn.SignUp" />
         <activity
             android:name=".ui.singin.SignInActivity"
             android:exported="false"

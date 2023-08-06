@@ -1,4 +1,4 @@
-package com.example.travel_danang_app.ui;
+package com.example.travel_danang_app.ui.setting;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.travel_danang_app.R;
 import com.example.travel_danang_app.databinding.FragmentSettingBinding;
+import com.example.travel_danang_app.ui.setting.changepass.ChangePasswordActivity;
 import com.example.travel_danang_app.ui.singin.SignInActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -65,6 +66,7 @@ public class SettingFragment extends Fragment {
     }
 
     private void onChangePasswordButtonClicked() {
+        startActivity(new Intent(getContext(), ChangePasswordActivity.class));
     }
 
     private void onLogoutButtonClicked() {
