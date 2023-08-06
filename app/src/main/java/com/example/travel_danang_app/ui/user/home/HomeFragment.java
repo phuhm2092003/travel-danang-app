@@ -71,7 +71,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     }
 
     @Override
-    public void onGetLocationsResult(List<Location> locations) {
+    public void onDisplayLocations(List<Location> locations) {
         locationAdapter.setListLocation(locations);
     }
 }

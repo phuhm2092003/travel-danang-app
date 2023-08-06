@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface HomeContract {
     interface View {
-        void onGetLocationsResult(List<Location> locations);
+        void onDisplayLocations(List<Location> locations);
     }
 
     interface Presenter {

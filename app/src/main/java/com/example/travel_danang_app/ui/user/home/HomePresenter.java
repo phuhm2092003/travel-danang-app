@@ -37,7 +37,7 @@ public class HomePresenter implements HomeContract.Presenter {
             public void onResponse(Call<ArrayList<Location>> call, Response<ArrayList<Location>> response) {
                 if (response.isSuccessful()) {
                     ArrayList<Location> list = response.body();
-                    view.onGetLocationsResult(list);
+                    view.onDisplayLocations(list);
                 } else {
                     Log.e("TAG", "Call get location API error: " + response.message());
                 }
