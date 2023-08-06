@@ -42,7 +42,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         setUpImageSlider();
         homePresenter = new HomePresenter(this);
         homePresenter.onCallGetLocationsApi();
-        setUprecyclerView();
+        setUpRecyclerView();
     }
 
     private void setUpImageSlider() {
@@ -61,9 +61,10 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         return photos;
     }
 
-    private void setUprecyclerView() {
+    private void setUpRecyclerView() {
         LinearLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         homeBinding.locationsRecyclerView.setLayoutManager(layoutManager);
+
         locationAdapter = new LocationAdapter();
         homeBinding.locationsRecyclerView.setAdapter(locationAdapter);
         homeBinding.locationsRecyclerView.setNestedScrollingEnabled(false);
