@@ -9,8 +9,9 @@
     android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/photoLocation"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="130dp"
         android:scaleType="centerCrop"
         android:src="@drawable/demo"/>
     <LinearLayout
@@ -19,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/nameLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
@@ -28,6 +30,7 @@
             android:textColor="@color/TextColor1"
             android:text="Thác Nước Hòa Phú Thành"/>
         <TextView
+            android:id="@+id/aboutLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"
@@ -37,19 +40,20 @@
             android:textColor="@color/TextColor1"
             android:text="Khu trượt thác này có sông và suối chảy qua với chiều dài trên 3km, len lỏi quanh những đỉnh đồi dưới bóng cây xanh mát nên sẽ rất lý tưởng để du khách có thể thỏa sức trượt thác mát lạnh và thư giãn đầu óc. Mỗi xuồng trượt thác có 2 người nên rất thích hợp cho bạn chơi cùng đồng đội thử cảm giác mạnh."/>
         <RelativeLayout
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:gravity="center"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/addressLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:drawablePadding="4dp"
                 android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/favouriteCheck"
+                android:layout_toStartOf="@+id/favouriteCheckButton"
                 android:drawableStart="@drawable/map_pin_fill"
                 android:ellipsize="end"
                 android:layout_marginEnd="20dp"
@@ -61,9 +65,10 @@
                 android:textSize="13sp" />
 
             <CheckBox
-                android:id="@+id/favouriteCheck"
-                android:layout_width="24sp"
-                android:layout_height="24sp"
+                android:buttonTint="@color/check_box_selected"
+                android:id="@+id/favouriteCheckButton"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:button="@drawable/button_checkbox_custom" />

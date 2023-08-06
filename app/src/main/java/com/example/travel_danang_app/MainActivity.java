@@ -27,15 +27,15 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.menu_home:
                     switchFragment(new HomeFragment());
-                    setBottonNavIcons(R.drawable.ic_home_fill, R.drawable.ic_favourite_line, R.drawable.ic_setting_line);
+                    setBottonNavIcons(R.drawable.ic_home_fill, R.drawable.ic_favourite1, R.drawable.ic_setting_line);
                     return true;
                 case R.id.menu_favourite:
                     switchFragment(new FavouriteFragment());
-                    setBottonNavIcons(R.drawable.ic_home_line, R.drawable.ic_favourite_fill, R.drawable.ic_setting_line);
+                    setBottonNavIcons(R.drawable.ic_home_line, R.drawable.ic_favourite2, R.drawable.ic_setting_line);
                     return true;
                 case R.id.menu_setting:
                     switchFragment(new SettingFragment());
-                    setBottonNavIcons(R.drawable.ic_home_line, R.drawable.ic_favourite_line, R.drawable.ic_setting_fill);
+                    setBottonNavIcons(R.drawable.ic_home_line, R.drawable.ic_favourite1, R.drawable.ic_setting_fill);
                     return true;
                 default:
                     return false;
