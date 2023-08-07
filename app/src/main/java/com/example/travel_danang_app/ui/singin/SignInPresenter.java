@@ -6,11 +6,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignInPresenter implements SignInContract.Presenter {
     private final SignInContract.View view;
-    private final FirebaseAuth mAuth;
-
     public SignInPresenter(SignInContract.View view) {
         this.view = view;
-        this.mAuth= FirebaseAuth.getInstance();
     }
 
     @Override
@@ -21,6 +18,7 @@ public class SignInPresenter implements SignInContract.Presenter {
         }
 
         view.onShowLoading();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     view.onHideLoading();

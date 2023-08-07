@@ -30,7 +30,6 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
         super.onCreate(savedInstanceState);
         binding = ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         initObjects();
         setListeners();
     }
