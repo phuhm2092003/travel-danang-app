@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/GrayColor3"
+    tools:context=".ui.location.LocationDetailActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/photo"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/demo" />
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="25dp"
+            app:layout_constraintStart_toStartOf="@+id/photo"
+            app:layout_constraintTop_toTopOf="@+id/photo"
+            app:srcCompat="@drawable/ic_back1" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/photo">
+
+            <TextView
+                android:id="@+id/tenDiaDiem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_medium"
+                android:text="Phố cổ Hội An"
+                android:textColor="@color/TextColor1"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/viTri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toStartOf="@+id/favouriteCheckButton"
+                    android:drawableStart="@drawable/map_pin_fill"
+                    android:drawablePadding="3dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_regular"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:text="Đường Võ Chí Công, Bình Minh, Thăng Bình, Quảng Nam, Việt Nam"
+                    android:textColor="@color/TextColor1"
+                    android:textSize="13sp" />
+
+                <CheckBox
+                    android:id="@+id/favouriteCheckButton"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:button="@drawable/button_checkbox_custom"
+                    android:buttonTint="@color/check_box_selected" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="12dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Giới thiệu"
+                android:textColor="@color/TextColor1"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/thoiGian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/inter_regular"
+                android:lineHeight="20sp"
+                android:maxLines="3"
+                android:text="📍 Mở cửa từ 7h00 - 21h00"
+                android:textColor="@color/TextColor1"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/giaVe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/inter_regular"
+                android:lineHeight="20sp"
+                android:maxLines="3"
+                android:text="📍 Giá vé 80.000VNĐ / Người"
+                android:textColor="@color/TextColor1"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/khuyenNghi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/inter_regular"
+                android:lineHeight="20sp"
+                android:maxLines="3"
+                android:text="📍 Phù hợp cho vui chơi giải trí, check-in sống ảo"
+                android:textColor="@color/TextColor1"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/gioiThieu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/inter_regular"
+                android:lineHeight="20sp"
+                android:text="📍 Tọa lạc trên đỉnh núi Bà Nà cao vời vợi, Bà Nà Hills hút hồn du khách với vẻ đẹp như tiên cảnh và cáp treo dài nhất thế giới. Bởi khí hậu mát mẻ và thuận lợi, du khách có thể ghé thăm du lịch vào bất kỳ thời điểm nào. Bên cạnh khung cảnh lung linh tuyệt đẹp, Bà Nà Hills còn có nhiều khu vui chơi thú vị, hứa hẹn mang đến cho du khách những trải nghiệm khó quên."
+                android:textColor="@color/TextColor1"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -69,6 +69,8 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
                 itemLocationClicked.onFavouriteLocationClick(false, location.getId());
             }
         });
+
+        holder.itemView.setOnClickListener(view -> itemLocationClicked.onDisplayDetailLocation(location));
     }
 
     @Override

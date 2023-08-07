@@ -1,5 +1,6 @@
 package com.example.travel_danang_app.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +21,14 @@ import com.example.travel_danang_app.adapter.LocationAdapter;
 import com.example.travel_danang_app.databinding.FragmentHomeBinding;
 import com.example.travel_danang_app.interfaces.ItemLocationClicked;
 import com.example.travel_danang_app.model.Location;
+import com.example.travel_danang_app.ui.location.LocationDetailActivity;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment implements HomeContract.View, ItemLocationClicked {
+    public static final String EXTRA_OBJECT_LOCATION = "location";
     private FragmentHomeBinding homeBinding;
     private HomePresenter homePresenter;
     private LocationAdapter locationAdapter;
@@ -85,5 +89,12 @@ public class HomeFragment extends Fragment implements HomeContract.View, ItemLoc
         } else {
             homePresenter.removeFavouriteLocation(idLocation);
         }
+    }
+
+    @Override
+    public void onDisplayDetailLocation(Location location) {
+        Intent intent = new Intent(getContext(), LocationDetailActivity.class);
+        intent.putExtra(EXTRA_OBJECT_LOCATION, location);
+        startActivity(intent);
     }
 }

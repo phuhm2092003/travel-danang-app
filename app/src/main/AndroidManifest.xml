@@ -15,9 +15,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:theme="@style/Theme.ChangePassword"
-            android:name=".ui.changepass.ChangePasswordActivity"
+            android:theme="@style/Theme.LocationDetail"
+            android:name=".ui.location.LocationDetailActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.changepass.ChangePasswordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.ChangePassword" />
         <activity
             android:name=".ui.forgotpass.ForgotPasswordActivity"
             android:exported="false"

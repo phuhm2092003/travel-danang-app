@@ -53,7 +53,6 @@ public class HomePresenter implements HomeContract.Presenter {
     @Override
     public void addFavouriteLocation(int idLocation) {
         if (!isUserSignIn()) return;
-
         Call<FavouriteResponse> call = apiService.addFavourite(currentUser.getUid(), idLocation);
         call.enqueue(new Callback<FavouriteResponse>() {
             @Override

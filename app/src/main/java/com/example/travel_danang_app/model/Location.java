@@ -1,6 +1,8 @@
 package com.example.travel_danang_app.model;
 
-public class Location {
+import java.io.Serializable;
+
+public class Location implements Serializable {
     private int id;
     private String hinhAnh;
     private String gioMoCua;

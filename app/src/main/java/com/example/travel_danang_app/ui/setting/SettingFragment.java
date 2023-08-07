@@ -71,7 +71,7 @@ public class SettingFragment extends Fragment {
         builder.setPositiveButton("Có", (dialogInterface, i) -> {
             firebaseAuth.signOut();
             startActivity(new Intent(getContext(), SignInActivity.class));
-            getActivity().finish();
+            getActivity().finishAffinity();
         });
         builder.setNegativeButton("Huỷ", (dialogInterface, i) -> {});
 
