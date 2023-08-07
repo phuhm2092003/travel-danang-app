@@ -1,4 +1,4 @@
-package com.example.travel_danang_app.ui.setting.changepass;
+package com.example.travel_danang_app.ui.changepass;
 
 import com.example.travel_danang_app.utils.UtilsDataInput;
 

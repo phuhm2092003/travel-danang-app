@@ -14,6 +14,7 @@ public interface HomeContract {
         void onCallGetLocationsApi();
 
         void addFavouriteLocation(int idLocation);
+
         void removeFavouriteLocation(int idLocation);
     }
 }

@@ -39,13 +39,13 @@ public class HomeFragment extends Fragment implements HomeContract.View, ItemLoc
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initObjects();
-        homePresenter.onCallGetLocationsApi(); // Load locations
         setUpImageSlider();
         setUpRecyclerView();
     }
 
     private void initObjects() {
         homePresenter = new HomePresenter(this);
+        homePresenter.onCallGetLocationsApi();
     }
 
     private void setUpImageSlider() {
@@ -80,9 +80,9 @@ public class HomeFragment extends Fragment implements HomeContract.View, ItemLoc
 
     @Override
     public void onFavouriteLocationClick(boolean isFavourite, int idLocation) {
-        if(isFavourite){
+        if (isFavourite) {
             homePresenter.addFavouriteLocation(idLocation);
-        }else {
+        } else {
             homePresenter.removeFavouriteLocation(idLocation);
         }
     }

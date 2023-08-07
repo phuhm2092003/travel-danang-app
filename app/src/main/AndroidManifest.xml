@@ -16,7 +16,7 @@
         tools:targetApi="31">
         <activity
             android:theme="@style/Theme.ChangePassword"
-            android:name=".ui.setting.changepass.ChangePasswordActivity"
+            android:name=".ui.changepass.ChangePasswordActivity"
             android:exported="false" />
         <activity
             android:name=".ui.forgotpass.ForgotPasswordActivity"

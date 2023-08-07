@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.travel_danang_app.R;
 import com.example.travel_danang_app.databinding.FragmentSettingBinding;
-import com.example.travel_danang_app.ui.setting.changepass.ChangePasswordActivity;
+import com.example.travel_danang_app.ui.changepass.ChangePasswordActivity;
 import com.example.travel_danang_app.ui.singin.SignInActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
