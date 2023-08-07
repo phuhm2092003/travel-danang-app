@@ -62,15 +62,13 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
 
         holder.locationBinding.favouriteCheckButton.setOnClickListener(view -> {
             if (holder.locationBinding.favouriteCheckButton.isChecked()) {
-                // Yêu thích địa điểm
                 itemLocationClicked.onFavouriteLocationClick(true, location.getId());
             } else {
-                // Bỏ yêu thích
                 itemLocationClicked.onFavouriteLocationClick(false, location.getId());
             }
         });
 
-        holder.itemView.setOnClickListener(view -> itemLocationClicked.onDisplayDetailLocation(location));
+        holder.itemView.setOnClickListener(view -> itemLocationClicked.onLaucnhDetailLocationActivity(location));
     }
 
     @Override

@@ -89,11 +89,10 @@ public class HomeFragment extends Fragment implements HomeContract.View, ItemLoc
         } else {
             homePresenter.removeFavouriteLocation(idLocation);
         }
-        homePresenter.onCallGetLocationsApi();
     }
 
     @Override
-    public void onDisplayDetailLocation(Location location) {
+    public void onLaucnhDetailLocationActivity(Location location) {
         Intent intent = new Intent(getContext(), LocationDetailActivity.class);
         intent.putExtra(EXTRA_OBJECT_LOCATION, location);
         startActivity(intent);

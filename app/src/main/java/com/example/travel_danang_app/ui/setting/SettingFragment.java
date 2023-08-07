@@ -23,9 +23,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SettingFragment extends Fragment {
+    public static final String DIALOG_MESSAGE = "Bạn có muốn đăng xuất?";
     private FragmentSettingBinding settingBinding;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,14 +39,18 @@ public class SettingFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        firebaseAuth = FirebaseAuth.getInstance();
+        initObjects();
         fetchCurrentUserInfo();
         setListeners();
     }
 
+    private void initObjects() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
+    }
+
     private void fetchCurrentUserInfo() {
-        currentUser= firebaseAuth.getCurrentUser();
-        if(currentUser == null){
+        if (currentUser == null) {
             return;
         }
         Glide.with(getContext())
@@ -56,7 +62,7 @@ public class SettingFragment extends Fragment {
         settingBinding.emailCurrentUser.setText(currentUser.getEmail());
     }
 
-    private void setListeners(){
+    private void setListeners() {
         settingBinding.changePassswordButton.setOnClickListener(view -> onChangePasswordButtonClicked());
         settingBinding.logoutButton.setOnClickListener(view -> onLogoutButtonClicked());
     }
@@ -67,13 +73,16 @@ public class SettingFragment extends Fragment {
 
     private void onLogoutButtonClicked() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage("Bạn có muốn đăng xuất?");
+        builder.setMessage(DIALOG_MESSAGE);
+
         builder.setPositiveButton("Có", (dialogInterface, i) -> {
             firebaseAuth.signOut();
             startActivity(new Intent(getContext(), SignInActivity.class));
             getActivity().finishAffinity();
         });
-        builder.setNegativeButton("Huỷ", (dialogInterface, i) -> {});
+
+        builder.setNegativeButton("Huỷ", (dialogInterface, i) -> {
+        });
 
         Dialog dialog = builder.create();
         dialog.show();

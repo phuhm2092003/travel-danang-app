@@ -15,7 +15,7 @@ import com.example.travel_danang_app.utils.UtilsDataInput;
 import com.example.travel_danang_app.utils.UtilsMessage;
 import com.example.travel_danang_app.utils.UtilsProgressDialog;
 
-public class ChangePasswordActivity extends AppCompatActivity implements ChangePasswordContract.View{
+public class ChangePasswordActivity extends AppCompatActivity implements ChangePasswordContract.View {
     public static final String DATA_EMPTY_MESSAGE = "Vui lòng nhập thông tin";
     public static final String PASSWORD_LENGTH_INVALID_MESSGAE = "Mật khẩu mới tối thiểu 6 ký tự";
     public static final String CHANGE_PASSWORD_SUCCESS_MESSAGE = "Cập nhật thành công";
@@ -25,6 +25,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
     private ChangePasswordPresenter changePasswordPresenter;
     private UtilsMessage utilsMessage;
     private UtilsProgressDialog utilsProgressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,17 +42,18 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
         utilsProgressDialog = new UtilsProgressDialog(this);
     }
 
-    private void initToolbar(){
+    private void initToolbar() {
         setSupportActionBar(changePasswordBinding.toolbar);
         getSupportActionBar().setTitle(null);
     }
 
-    private void setListeners(){
+    private void setListeners() {
         changePasswordBinding.toolbar.setNavigationOnClickListener(view -> onBackPressed());
         changePasswordBinding.passwordOldToggle.setOnClickListener(view -> onPasswordToggleClicked(changePasswordBinding.passwordOldEditText, changePasswordBinding.passwordOldToggle));
         changePasswordBinding.passwordNewToggle.setOnClickListener(view -> onPasswordToggleClicked(changePasswordBinding.passwordNewEditText, changePasswordBinding.passwordNewToggle));
         changePasswordBinding.changePasswordButton.setOnClickListener(view -> onChangePasswordButtonClicked());
     }
+
     private void onPasswordToggleClicked(EditText passwordEditText, ImageView togglePassword) {
         TransformationMethod transformationMethod;
         int imageResource;
@@ -68,6 +70,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
         passwordEditText.setTransformationMethod(transformationMethod);
         togglePassword.setImageResource(imageResource);
     }
+
     private void onChangePasswordButtonClicked() {
         String passwordOld = changePasswordBinding.passwordOldEditText.getText().toString();
         String passwordNew = changePasswordBinding.passwordNewEditText.getText().toString();

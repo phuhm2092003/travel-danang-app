@@ -61,6 +61,7 @@ public class HomePresenter implements HomeContract.Presenter {
                     boolean status = response.body().isStatus();
                     if (status) {
                         Log.e("TAG", "Add favourte success");
+                        onCallGetLocationsApi(); // Load location list
                     } else {
                         Log.e("TAG", "Add favourte failed");
                     }
@@ -87,6 +88,7 @@ public class HomePresenter implements HomeContract.Presenter {
                     boolean status = response.body().isStatus();
                     if (status) {
                         Log.e("TAG", "Remove favourte success");
+                        onCallGetLocationsApi(); // Load location list
                     } else {
                         Log.e("TAG", "Remove favourte failed");
                     }
