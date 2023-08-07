@@ -89,6 +89,7 @@ public class HomeFragment extends Fragment implements HomeContract.View, ItemLoc
         } else {
             homePresenter.removeFavouriteLocation(idLocation);
         }
+        homePresenter.onCallGetLocationsApi();
     }
 
     @Override
@@ -96,5 +97,11 @@ public class HomeFragment extends Fragment implements HomeContract.View, ItemLoc
         Intent intent = new Intent(getContext(), LocationDetailActivity.class);
         intent.putExtra(EXTRA_OBJECT_LOCATION, location);
         startActivity(intent);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        homePresenter.onCallGetLocationsApi();
     }
 }

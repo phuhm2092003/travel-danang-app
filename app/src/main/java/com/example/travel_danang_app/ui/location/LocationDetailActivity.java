@@ -5,6 +5,7 @@ import androidx.core.view.WindowCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 
 import com.bumptech.glide.Glide;
@@ -20,6 +21,7 @@ import java.util.Locale;
 
 public class LocationDetailActivity extends AppCompatActivity {
     private ActivityLocationDetailBinding binding;
+    private LocationDetailPresenter locationDetailPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class LocationDetailActivity extends AppCompatActivity {
         binding = ActivityLocationDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        locationDetailPresenter = new LocationDetailPresenter();
         displayLocationDetail();
         setListeners();
     }
@@ -49,6 +52,16 @@ public class LocationDetailActivity extends AppCompatActivity {
 
     private void setListeners(){
         binding.backButton.setOnClickListener(view -> onBackPressed());
+        binding.favouriteCheckButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(binding.favouriteCheckButton.isChecked()){
+                    locationDetailPresenter.addFavouriteLocation(getLocationDetail().getId());
+                }else {
+                    locationDetailPresenter.removeFavouriteLocation(getLocationDetail().getId());
+                }
+            }
+        });
     }
 
     private Location getLocationDetail() {
