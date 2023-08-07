@@ -11,11 +11,9 @@ import java.util.Objects;
 
 public class SignUpPresenter implements SignUpContract.Presenter {
     private final SignUpContract.View view;
-    private final FirebaseAuth firebaseAuth;
 
     public SignUpPresenter(SignUpContract.View view) {
         this.view = view;
-        this.firebaseAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -23,8 +21,10 @@ public class SignUpPresenter implements SignUpContract.Presenter {
         if (!isValidDataInput(email, fullname, password)) {
             return;
         }
+
         view.onShowLoading();
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     view.onHideLoading();
                     if (task.isSuccessful()) {
@@ -37,11 +37,10 @@ public class SignUpPresenter implements SignUpContract.Presenter {
                             return;
                         }
                         currentUser.updateProfile(profileUpdates);
-
-                        view.signUpSuccess();
-                        firebaseAuth.signOut();
+                        view.onSignUpSuccess();
+                        mAuth.signOut();
                     } else {
-                        view.signUpFailed(Objects.requireNonNull(task.getException()).toString());
+                        view.onSignUpFailed(Objects.requireNonNull(task.getException()).toString());
                     }
                 });
     }

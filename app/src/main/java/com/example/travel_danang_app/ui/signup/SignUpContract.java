@@ -14,9 +14,9 @@ public interface SignUpContract {
 
         void onHideLoading();
 
-        void signUpSuccess();
+        void onSignUpSuccess();
 
-        void signUpFailed(String err);
+        void onSignUpFailed(String err);
     }
 
     interface Presenter {

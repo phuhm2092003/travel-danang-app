@@ -114,13 +114,13 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
     }
 
     @Override
-    public void signUpSuccess() {
+    public void onSignUpSuccess() {
         utilsMessage.showMessage(SIGN_UP_SUCESS_MESSAGE);
         UtilsDataInput.clearDataEditText(signUpBinding.emailEditText, signUpBinding.fullnameEditText, signUpBinding.passwordEditText);
     }
 
     @Override
-    public void signUpFailed(String err) {
+    public void onSignUpFailed(String err) {
         utilsMessage.showMessage(SIGN_UP_FAILED_MESSAGE);
         Log.e("TAG", "signUpFailed: " + err);
     }

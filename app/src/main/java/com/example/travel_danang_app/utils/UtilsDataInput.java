@@ -5,8 +5,8 @@ import android.widget.EditText;
 public class UtilsDataInput {
     public static final int MAX_LENGTH = 6;
 
-    public static boolean isEmptyData(String... arrData) {
-        for (String str : arrData) {
+    public static boolean isEmptyData(String... data) {
+        for (String str : data) {
             if (str.isEmpty()) return true;
         }
         return false;
@@ -26,8 +26,8 @@ public class UtilsDataInput {
         return password.length() >= MAX_LENGTH;
     }
 
-    public static void clearDataEditText(EditText ...arrInput) {
-        for (EditText edt : arrInput) {
+    public static void clearDataEditText(EditText... arrEditText) {
+        for (EditText edt : arrEditText) {
             edt.setText(null);
         }
     }
