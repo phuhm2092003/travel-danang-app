@@ -57,12 +57,8 @@ public class SettingFragment extends Fragment {
     }
 
     private void setListeners(){
-        settingBinding.editProfileButton.setOnClickListener(view -> onEditProfileButtonClicked());
-        settingBinding.changePasswordButton.setOnClickListener(view -> onChangePasswordButtonClicked());
+        settingBinding.changePassswordButton.setOnClickListener(view -> onChangePasswordButtonClicked());
         settingBinding.logoutButton.setOnClickListener(view -> onLogoutButtonClicked());
-    }
-
-    private void onEditProfileButtonClicked() {
     }
 
     private void onChangePasswordButtonClicked() {
