@@ -52,14 +52,11 @@ public class LocationDetailActivity extends AppCompatActivity {
 
     private void setListeners(){
         binding.backButton.setOnClickListener(view -> onBackPressed());
-        binding.favouriteCheckButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(binding.favouriteCheckButton.isChecked()){
-                    locationDetailPresenter.addFavouriteLocation(getLocationDetail().getId());
-                }else {
-                    locationDetailPresenter.removeFavouriteLocation(getLocationDetail().getId());
-                }
+        binding.favouriteCheckButton.setOnClickListener(view -> {
+            if(binding.favouriteCheckButton.isChecked()){
+                locationDetailPresenter.addFavouriteLocation(getLocationDetail().getId());
+            }else {
+                locationDetailPresenter.removeFavouriteLocation(getLocationDetail().getId());
             }
         });
     }

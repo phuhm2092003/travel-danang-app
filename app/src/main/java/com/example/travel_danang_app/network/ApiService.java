@@ -18,6 +18,10 @@ public interface ApiService {
     Call<ArrayList<Location>> getLocations(@Field("idUser") String idUser);
 
     @FormUrlEncoded
+    @POST(ManaUrl.GET_FAVOURITE_LOCATIONS_URL)
+    Call<ArrayList<Location>> getFavouriteLocations(@Field("idUser") String idUser);
+
+    @FormUrlEncoded
     @POST(ManaUrl.ADD_FAVOURITE_URL)
     Call<FavouriteResponse> addFavourite(@Field("idUser") String idUser, @Field("idLocation") int idLocation);
 

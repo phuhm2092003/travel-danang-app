@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.example.travel_danang_app.databinding.ActivityMainBinding;
-import com.example.travel_danang_app.ui.FavouriteFragment;
+import com.example.travel_danang_app.ui.favourite.FavouriteFragment;
 import com.example.travel_danang_app.ui.home.HomeFragment;
 import com.example.travel_danang_app.ui.setting.SettingFragment;
 
