@@ -76,7 +76,7 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
         String email = binding.emailEditText.getText().toString().trim();
         String password = binding.passwordEditText.getText().toString().trim();
 
-        signInPresenter.signIn(email, password);
+        signInPresenter.performSignIn(email, password);
     }
 
     @Override
@@ -103,5 +103,10 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
     @Override
     public void onSignInFailed() {
         utilsMessage.showMessage(SIGN_IN_FAILED_MESSAGE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

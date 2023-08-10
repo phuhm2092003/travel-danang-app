@@ -6,12 +6,13 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignInPresenter implements SignInContract.Presenter {
     private final SignInContract.View view;
+
     public SignInPresenter(SignInContract.View view) {
         this.view = view;
     }
 
     @Override
-    public void signIn(String email, String password) {
+    public void performSignIn(String email, String password) {
         if (UtilsDataInput.isEmptyData(email, password)) {
             view.onDataInputEmpty();
             return;
