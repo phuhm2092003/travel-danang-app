@@ -82,4 +82,10 @@ public class FavouriteFragment extends Fragment implements FavourtieContract.Vie
         intent.putExtra(HomeFragment.EXTRA_OBJECT_LOCATION, location);
         startActivity(intent);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        favouritePresenter.getFavouriteLocations();
+    }
 }
