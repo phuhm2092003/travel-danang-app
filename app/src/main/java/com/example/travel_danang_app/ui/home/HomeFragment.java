@@ -1,5 +1,6 @@
 package com.example.travel_danang_app.ui.home;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -9,14 +10,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 
+import com.example.travel_danang_app.ui.search.SearchActivity;
 import com.example.travel_danang_app.adapter.LocationAdapter;
 import com.example.travel_danang_app.databinding.FragmentHomeBinding;
 import com.example.travel_danang_app.interfaces.ItemLocationClicked;
@@ -39,12 +41,26 @@ public class HomeFragment extends Fragment implements HomeContract.View, ItemLoc
         return homeBinding.getRoot();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initObjects();
         setUpImageSlider();
         setUpRecyclerView();
+        homeBinding.searchEditText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    launchSearchActivity();
+                }
+                return false;
+            }
+        });
+    }
+
+    private void launchSearchActivity() {
+        startActivity(new Intent(requireContext(), SearchActivity.class));
     }
 
     private void initObjects() {
