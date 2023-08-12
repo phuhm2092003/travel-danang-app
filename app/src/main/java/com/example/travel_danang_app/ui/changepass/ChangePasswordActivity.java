@@ -101,7 +101,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
     @Override
     public void onChangePasswordSuccess() {
         utilsMessage.showMessage(CHANGE_PASSWORD_SUCCESS_MESSAGE);
-        UtilsDataInput.clearDataEditText(changePasswordBinding.passwordOldEditText, changePasswordBinding.passwordNewEditText);
+        UtilsDataInput.clearDataInput(changePasswordBinding.passwordOldEditText, changePasswordBinding.passwordNewEditText);
     }
 
     @Override

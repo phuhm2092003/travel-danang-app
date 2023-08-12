@@ -116,7 +116,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
     @Override
     public void onSignUpSuccess() {
         utilsMessage.showMessage(SIGN_UP_SUCESS_MESSAGE);
-        UtilsDataInput.clearDataEditText(signUpBinding.emailEditText, signUpBinding.fullnameEditText, signUpBinding.passwordEditText);
+        UtilsDataInput.clearDataInput(signUpBinding.emailEditText, signUpBinding.fullnameEditText, signUpBinding.passwordEditText);
     }
 
     @Override

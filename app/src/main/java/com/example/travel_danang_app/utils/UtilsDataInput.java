@@ -26,7 +26,7 @@ public class UtilsDataInput {
         return password.length() >= MAX_LENGTH;
     }
 
-    public static void clearDataEditText(EditText... arrEditText) {
+    public static void clearDataInput(EditText... arrEditText) {
         for (EditText edt : arrEditText) {
             edt.setText(null);
         }
