@@ -25,7 +25,7 @@ public class SplashActivity extends AppCompatActivity {
         if (isUserSignIn()) {
             launchMainActivity();
         } else {
-            launchSignInActivity();
+            launchSignInActivityWithDelay();
         }
     }
 
@@ -39,7 +39,7 @@ public class SplashActivity extends AppCompatActivity {
         finish();
     }
 
-    private void launchSignInActivity() {
+    private void launchSignInActivityWithDelay() {
         new Handler().postDelayed(() -> {
             startActivity(new Intent(this, SignInActivity.class));
             finish();
