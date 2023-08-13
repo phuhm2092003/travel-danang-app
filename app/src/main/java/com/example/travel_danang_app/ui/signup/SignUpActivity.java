@@ -105,7 +105,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
 
     @Override
     public void onShowLoading() {
-        utilsProgressDialog.showLoadingDialog(LOADING_MESSGAE);
+        utilsProgressDialog.showLoadingDialog();
     }
 
     @Override

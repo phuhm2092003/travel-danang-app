@@ -19,8 +19,7 @@ import com.example.travel_danang_app.utils.UtilsProgressDialog;
 public class SignInActivity extends AppCompatActivity implements SignInContract.View {
     public static final String DATA_INPUT_EMPTY_MESSAGE = "Vui lòng nhập đầy đủ thông tin";
     public static final String SIGN_IN_FAILED_MESSAGE = "Đăng nhập không thành công";
-    public static final String LOADING_MESSAGE = "Vui lòng chờ....";
-    private ActivitySignInBinding binding;
+    private ActivitySignInBinding signInBinding;
     private SignInPresenter signInPresenter;
     private UtilsProgressDialog utilsProgressDialog;
     private UtilsMessage utilsMessage;
@@ -28,8 +27,8 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivitySignInBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        signInBinding = ActivitySignInBinding.inflate(getLayoutInflater());
+        setContentView(signInBinding.getRoot());
         initObjects();
         setListeners();
     }
@@ -41,42 +40,42 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
     }
 
     private void setListeners() {
-        binding.forgotPassTextView.setOnClickListener(view -> onStartForgotPasswordActivity());
-        binding.signUpTextView.setOnClickListener(view -> onStartSignUpActivity());
-        binding.passwordToggle.setOnClickListener(view -> onPasswordToggleClicked());
-        binding.signInButton.setOnClickListener(view -> onSignInButtonClicked());
-    }
-
-    private void onStartForgotPasswordActivity() {
-        startActivity(new Intent(this, ForgotPasswordActivity.class));
-    }
-
-    private void onStartSignUpActivity() {
-        startActivity(new Intent(this, SignUpActivity.class));
+        signInBinding.passwordToggle.setOnClickListener(view -> onPasswordToggleClicked());
+        signInBinding.forgotPassTextView.setOnClickListener(view -> launchForgotPasswordActivity());
+        signInBinding.signUpTextView.setOnClickListener(view -> launchSignUpActivity());
+        signInBinding.signInButton.setOnClickListener(view -> onSignInButtonClicked());
     }
 
     private void onPasswordToggleClicked() {
-        TransformationMethod transformationMethod;
-        int imageResource;
+        TransformationMethod transformationMethodEditText;
+        int imagePasswordToggle;
 
-        boolean isPasswordVisible = binding.passwordEditText.getTransformationMethod() instanceof HideReturnsTransformationMethod;
+        boolean isPasswordVisible = signInBinding.passwordEditText.getTransformationMethod() instanceof HideReturnsTransformationMethod;
         if (isPasswordVisible) {
-            transformationMethod = PasswordTransformationMethod.getInstance();
-            imageResource = R.drawable.eye_off;
+            transformationMethodEditText = PasswordTransformationMethod.getInstance();
+            imagePasswordToggle = R.drawable.eye_off;
         } else {
-            transformationMethod = HideReturnsTransformationMethod.getInstance();
-            imageResource = R.drawable.eye_on;
+            transformationMethodEditText = HideReturnsTransformationMethod.getInstance();
+            imagePasswordToggle = R.drawable.eye_on;
         }
 
-        binding.passwordEditText.setTransformationMethod(transformationMethod);
-        binding.passwordToggle.setImageResource(imageResource);
+        signInBinding.passwordEditText.setTransformationMethod(transformationMethodEditText);
+        signInBinding.passwordToggle.setImageResource(imagePasswordToggle);
+    }
+
+    private void launchForgotPasswordActivity() {
+        startActivity(new Intent(this, ForgotPasswordActivity.class));
+    }
+
+    private void launchSignUpActivity() {
+        startActivity(new Intent(this, SignUpActivity.class));
     }
 
     private void onSignInButtonClicked() {
-        String email = binding.emailEditText.getText().toString().trim();
-        String password = binding.passwordEditText.getText().toString().trim();
+        String email = signInBinding.emailEditText.getText().toString().trim();
+        String password = signInBinding.passwordEditText.getText().toString().trim();
 
-        signInPresenter.performSignIn(email, password);
+        signInPresenter.signIn(email, password);
     }
 
     @Override
@@ -86,7 +85,7 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
 
     @Override
     public void onShowLoading() {
-        utilsProgressDialog.showLoadingDialog(LOADING_MESSAGE);
+        utilsProgressDialog.showLoadingDialog();
     }
 
     @Override
@@ -103,10 +102,5 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
     @Override
     public void onSignInFailed() {
         utilsMessage.showMessage(SIGN_IN_FAILED_MESSAGE);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 }

@@ -26,7 +26,7 @@
     </style>
 
     <!-- SignIn, SignUp theme. -->
-    <style name="Theme.SignIn.SignUp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.SignInActivity.SignUpActivity" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/PrimaryColor</item>
         <item name="colorPrimaryVariant">@color/PrimaryColor</item>

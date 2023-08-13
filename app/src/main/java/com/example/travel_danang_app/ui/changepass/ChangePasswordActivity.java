@@ -90,7 +90,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
 
     @Override
     public void onShowLoading() {
-        utilsProgressDialog.showLoadingDialog(LOADING_MESSAGE);
+        utilsProgressDialog.showLoadingDialog();
     }
 
     @Override

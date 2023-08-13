@@ -66,7 +66,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
 
     @Override
     public void onShowLoading() {
-        utilsProgressDialog.showLoadingDialog(LOADING_MESSAGE);
+        utilsProgressDialog.showLoadingDialog();
     }
 
     @Override

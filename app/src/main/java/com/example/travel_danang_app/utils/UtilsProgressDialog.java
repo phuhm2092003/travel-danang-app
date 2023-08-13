@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 
 public class UtilsProgressDialog {
+    public static final String DIALOG_MESSAGE = "Vui lòng chờ...";
     private Context context;
     private ProgressDialog progressDialog;
 
@@ -11,9 +12,9 @@ public class UtilsProgressDialog {
         this.context = context;
     }
 
-    public void showLoadingDialog(String title) {
+    public void showLoadingDialog() {
         progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage(title);
+        progressDialog.setMessage(DIALOG_MESSAGE);
         progressDialog.show();
     }
 

@@ -12,14 +12,14 @@ public class SignInPresenter implements SignInContract.Presenter {
     }
 
     @Override
-    public void performSignIn(String email, String password) {
-        if (UtilsDataInput.isEmptyData(email, password)) {
-            view.onDataInputEmpty();
+    public void signIn(String email, String password) {
+        if (!isValidDataInput(email, password)) {
             return;
         }
 
-        view.onShowLoading();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        view.onShowLoading();
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     view.onHideLoading();
@@ -29,5 +29,13 @@ public class SignInPresenter implements SignInContract.Presenter {
                         view.onSignInFailed();
                     }
                 });
+    }
+
+    private boolean isValidDataInput(String email, String password) {
+        if (UtilsDataInput.isEmptyData(email, password)) {
+            view.onDataInputEmpty();
+            return false;
+        }
+        return true;
     }
 }

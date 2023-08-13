@@ -14,6 +14,6 @@ public interface SignInContract {
     }
 
     interface Presenter {
-        void performSignIn(String email, String password);
+        void signIn(String email, String password);
     }
 }

@@ -12,26 +12,25 @@ public class UtilsMessage {
 
     private Context context;
     private Dialog dialog;
-    private MessageCustomBinding binding;
+    private MessageCustomBinding messageCustomBinding;
 
     public UtilsMessage(Context context) {
         this.context = context;
     }
 
     public void showMessage(String title) {
-        binding = MessageCustomBinding.inflate(LayoutInflater.from(context));
+        messageCustomBinding = MessageCustomBinding.inflate(LayoutInflater.from(context));
         dialog = new Dialog(context);
-        dialog.setContentView(binding.getRoot());
+        dialog.setContentView(messageCustomBinding.getRoot());
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
         dialog.show();
-        binding.message.setText(title);
-
+        messageCustomBinding.message.setText(title);
 
         new Handler().postDelayed(() -> {
             if (dialog != null && dialog.isShowing()) {
                 dialog.dismiss();
             }
-        }, 1000);
+        }, 800);
     }
 }

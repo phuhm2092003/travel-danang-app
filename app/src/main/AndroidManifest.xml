@@ -33,11 +33,11 @@
         <activity
             android:name=".ui.signup.SignUpActivity"
             android:exported="false"
-            android:theme="@style/Theme.SignIn.SignUp" />
+            android:theme="@style/Theme.SignInActivity.SignUpActivity" />
         <activity
             android:name=".ui.singin.SignInActivity"
             android:exported="false"
-            android:theme="@style/Theme.SignIn.SignUp" />
+            android:theme="@style/Theme.SignInActivity.SignUpActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
