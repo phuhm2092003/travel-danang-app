@@ -50,17 +50,6 @@ public class LocationDetailActivity extends AppCompatActivity {
         binding.favouriteCheckButton.setChecked(location.getIsFavourite() == 1);
     }
 
-    private void setListeners(){
-        binding.backButton.setOnClickListener(view -> onBackPressed());
-        binding.favouriteCheckButton.setOnClickListener(view -> {
-            if(binding.favouriteCheckButton.isChecked()){
-                locationDetailPresenter.addFavouriteLocation(getLocationDetail().getId());
-            }else {
-                locationDetailPresenter.removeFavouriteLocation(getLocationDetail().getId());
-            }
-        });
-    }
-
     private Location getLocationDetail() {
         Intent intent = getIntent();
         return (Location) intent.getSerializableExtra(HomeFragment.EXTRA_OBJECT_LOCATION);
@@ -72,6 +61,17 @@ public class LocationDetailActivity extends AppCompatActivity {
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
 
         return numberFormat.format(amount);
+    }
+
+    private void setListeners(){
+        binding.backButton.setOnClickListener(view -> onBackPressed());
+        binding.favouriteCheckButton.setOnClickListener(view -> {
+            if(binding.favouriteCheckButton.isChecked()){
+                locationDetailPresenter.addFavouriteLocation(getLocationDetail().getId());
+            }else {
+                locationDetailPresenter.removeFavouriteLocation(getLocationDetail().getId());
+            }
+        });
     }
 
 }
