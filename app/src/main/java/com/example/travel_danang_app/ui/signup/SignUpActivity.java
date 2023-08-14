@@ -6,9 +6,6 @@ import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.method.TransformationMethod;
-import android.util.Log;
-import android.widget.EditText;
-
 
 import com.example.travel_danang_app.R;
 import com.example.travel_danang_app.databinding.ActivitySignUpBinding;
@@ -21,7 +18,6 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
     public static final String EMAIL_INVALID_MESSAGE = "Email sai định dạng";
     public static final String FULLNAME_INVALID_MESSAGE = "Tên có chứa ký tự số";
     public static final String PASSWORD_LENGTH_INVALID_MESSGAE = "Mật khẩu phải ít nhất 6 ký tự";
-    public static final String LOADING_MESSGAE = "Vui lòng chờ...";
     public static final String SIGN_UP_SUCESS_MESSAGE = "Đăng ký thành công";
     public static final String SIGN_UP_FAILED_MESSAGE = "Email đã có người sử dụng";
     private ActivitySignUpBinding signUpBinding;
@@ -34,7 +30,6 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
         super.onCreate(savedInstanceState);
         signUpBinding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(signUpBinding.getRoot());
-
         iniObjects();
         initToolbar();
         setListeners();
@@ -59,20 +54,20 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
     }
 
     private void onPasswordToggleClicked() {
-        TransformationMethod transformationMethod;
-        int imageResource;
+        TransformationMethod transformationMethodEditText;
+        int imgPasswordToggle;
 
         boolean isPasswordVisible = signUpBinding.passwordEditText.getTransformationMethod() instanceof HideReturnsTransformationMethod;
         if (isPasswordVisible) {
-            transformationMethod = PasswordTransformationMethod.getInstance();
-            imageResource = R.drawable.eye_off;
+            transformationMethodEditText = PasswordTransformationMethod.getInstance();
+            imgPasswordToggle = R.drawable.eye_off;
         } else {
-            transformationMethod = HideReturnsTransformationMethod.getInstance();
-            imageResource = R.drawable.eye_on;
+            transformationMethodEditText = HideReturnsTransformationMethod.getInstance();
+            imgPasswordToggle = R.drawable.eye_on;
         }
 
-        signUpBinding.passwordEditText.setTransformationMethod(transformationMethod);
-        signUpBinding.passwordToggle.setImageResource(imageResource);
+        signUpBinding.passwordEditText.setTransformationMethod(transformationMethodEditText);
+        signUpBinding.passwordToggle.setImageResource(imgPasswordToggle);
     }
 
     private void onSignUpButtonClicked() {
@@ -116,12 +111,15 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
     @Override
     public void onSignUpSuccess() {
         utilsMessage.showMessage(SIGN_UP_SUCESS_MESSAGE);
-        UtilsDataInput.clearDataInput(signUpBinding.emailEditText, signUpBinding.fullnameEditText, signUpBinding.passwordEditText);
+        UtilsDataInput.clearDataInput(
+                signUpBinding.emailEditText,
+                signUpBinding.fullnameEditText,
+                signUpBinding.passwordEditText
+        );
     }
 
     @Override
     public void onSignUpFailed(String err) {
         utilsMessage.showMessage(SIGN_UP_FAILED_MESSAGE);
-        Log.e("TAG", "signUpFailed: " + err);
     }
 }
