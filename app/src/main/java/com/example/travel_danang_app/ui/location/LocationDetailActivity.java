@@ -5,7 +5,6 @@ import androidx.core.view.WindowCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 
 import com.bumptech.glide.Glide;
@@ -14,7 +13,6 @@ import com.example.travel_danang_app.databinding.ActivityLocationDetailBinding;
 import com.example.travel_danang_app.model.Location;
 
 import com.example.travel_danang_app.ui.home.HomeFragment;
-import com.example.travel_danang_app.ui.home.HomePresenter;
 
 import java.text.NumberFormat;
 import java.util.Locale;
