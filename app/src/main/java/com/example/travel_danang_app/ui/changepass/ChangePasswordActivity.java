@@ -1,7 +1,5 @@
 package com.example.travel_danang_app.ui.changepass;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -9,18 +7,21 @@ import android.text.method.TransformationMethod;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.travel_danang_app.R;
 import com.example.travel_danang_app.databinding.ActivityChangePasswordBinding;
 import com.example.travel_danang_app.utils.UtilsDataInput;
 import com.example.travel_danang_app.utils.UtilsMessage;
 import com.example.travel_danang_app.utils.UtilsProgressDialog;
 
+import java.util.Objects;
+
 public class ChangePasswordActivity extends AppCompatActivity implements ChangePasswordContract.View {
     public static final String DATA_EMPTY_MESSAGE = "Vui lòng nhập thông tin";
     public static final String PASSWORD_LENGTH_INVALID_MESSGAE = "Mật khẩu mới tối thiểu 6 ký tự";
     public static final String CHANGE_PASSWORD_SUCCESS_MESSAGE = "Cập nhật thành công";
     public static final String CHANGE_PASSWORD_FAILED_MESSAGE = "Sai mật khẩu cũ";
-    public static final String LOADING_MESSAGE = "Vui lòng chờ...";
     private ActivityChangePasswordBinding changePasswordBinding;
     private ChangePasswordPresenter changePasswordPresenter;
     private UtilsMessage utilsMessage;
@@ -44,7 +45,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
 
     private void initToolbar() {
         setSupportActionBar(changePasswordBinding.toolbar);
-        getSupportActionBar().setTitle(null);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(null);
     }
 
     private void setListeners() {
@@ -75,7 +76,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
         String passwordOld = changePasswordBinding.passwordOldEditText.getText().toString();
         String passwordNew = changePasswordBinding.passwordNewEditText.getText().toString();
 
-        changePasswordPresenter.onChangePassword(passwordOld, passwordNew);
+        changePasswordPresenter.changePassword(passwordOld, passwordNew);
     }
 
     @Override
@@ -101,7 +102,10 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
     @Override
     public void onChangePasswordSuccess() {
         utilsMessage.showMessage(CHANGE_PASSWORD_SUCCESS_MESSAGE);
-        UtilsDataInput.clearDataInput(changePasswordBinding.passwordOldEditText, changePasswordBinding.passwordNewEditText);
+        UtilsDataInput.clearDataInput(
+                changePasswordBinding.passwordOldEditText,
+                changePasswordBinding.passwordNewEditText
+        );
     }
 
     @Override

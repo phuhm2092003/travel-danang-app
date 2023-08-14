@@ -19,34 +19,32 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
     }
 
     @Override
-    public void onChangePassword(String passwordOld, String passwordNew) {
-        if (!isDataInputValid(passwordOld, passwordNew)) {
-            return;
-        }
-
-        if (currentUser == null) {
+    public void changePassword(String passwordOld, String passwordNew) {
+        if (!isDataInputValid(passwordOld, passwordNew) || currentUser == null) {
             return;
         }
 
         view.onShowLoading();
-        // Auth current user
         AuthCredential credential = EmailAuthProvider
                 .getCredential(Objects.requireNonNull(currentUser.getEmail()), passwordOld);
 
         currentUser.reauthenticate(credential)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        // Update password
-                        currentUser.updatePassword(passwordNew)
-                                .addOnCompleteListener(task1 -> {
-                                    view.onHideLoading();
-                                    if (task1.isSuccessful()) {
-                                        view.onChangePasswordSuccess();
-                                    }
-                                });
+                        updatePasswordToCurrentUser(passwordNew);
                     } else {
                         view.onChangePasswordFailed();
                         view.onHideLoading();
+                    }
+                });
+    }
+
+    private void updatePasswordToCurrentUser(String passwordNew) {
+        currentUser.updatePassword(passwordNew)
+                .addOnCompleteListener(task1 -> {
+                    view.onHideLoading();
+                    if (task1.isSuccessful()) {
+                        view.onChangePasswordSuccess();
                     }
                 });
     }

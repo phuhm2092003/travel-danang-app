@@ -16,6 +16,6 @@ public interface ChangePasswordContract {
     }
 
     interface Presenter {
-        void onChangePassword(String passwordOld, String passwordNew);
+        void changePassword(String passwordOld, String passwordNew);
     }
 }
