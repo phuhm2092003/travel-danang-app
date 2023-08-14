@@ -22,8 +22,6 @@ import com.example.travel_danang_app.ui.singin.SignInActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Objects;
-
 public class SettingFragment extends Fragment {
     public static final String DIALOG_MESSAGE = "Bạn có muốn đăng xuất?";
     private FragmentSettingBinding settingBinding;
@@ -31,7 +29,7 @@ public class SettingFragment extends Fragment {
     private FirebaseUser currentUser;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         settingBinding = FragmentSettingBinding.inflate(inflater, container, false);
         return settingBinding.getRoot();
@@ -54,6 +52,7 @@ public class SettingFragment extends Fragment {
         if (currentUser == null) {
             return;
         }
+
         Glide.with(requireContext())
                 .load(currentUser.getPhotoUrl())
                 .centerCrop()
@@ -64,15 +63,15 @@ public class SettingFragment extends Fragment {
     }
 
     private void setListeners() {
-        settingBinding.changePassswordButton.setOnClickListener(view -> onChangePasswordButtonClicked());
-        settingBinding.logoutButton.setOnClickListener(view -> onLogoutButtonClicked());
+        settingBinding.changePassswordButton.setOnClickListener(view -> launchChangePasswordActivity());
+        settingBinding.logoutButton.setOnClickListener(view -> comfirmLogOut());
     }
 
-    private void onChangePasswordButtonClicked() {
+    private void launchChangePasswordActivity() {
         startActivity(new Intent(requireContext(), ChangePasswordActivity.class));
     }
 
-    private void onLogoutButtonClicked() {
+    private void comfirmLogOut() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMessage(DIALOG_MESSAGE);
 
