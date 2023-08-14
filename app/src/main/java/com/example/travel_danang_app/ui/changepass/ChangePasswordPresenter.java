@@ -25,9 +25,9 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
         }
 
         view.onShowLoading();
+        // Xác thực lại người dùng
         AuthCredential credential = EmailAuthProvider
                 .getCredential(Objects.requireNonNull(currentUser.getEmail()), passwordOld);
-
         currentUser.reauthenticate(credential)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
