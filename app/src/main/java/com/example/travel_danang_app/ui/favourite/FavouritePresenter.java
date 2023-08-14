@@ -36,7 +36,7 @@ public class FavouritePresenter implements FavourtieContract.Presenter {
             public void onResponse(Call<ArrayList<Location>> call, Response<ArrayList<Location>> response) {
                 if (response.isSuccessful()) {
                     ArrayList<Location> locations = response.body();
-                    view.onDisplayFavouriteLocations(locations);
+                    view.displayFavouriteLocations(locations);
                 } else {
                     Log.e("TAG", "Call get location API error: " + response.message());
                 }
@@ -59,13 +59,13 @@ public class FavouritePresenter implements FavourtieContract.Presenter {
                 if (response.isSuccessful()) {
                     boolean status = response.body().isStatus();
                     if (status) {
-                        Log.e("TAG", "Add favourte success");
-                        getFavouriteLocations(); // Load location list
+                        Log.e("TAG", "Add favourite success");
+                        getFavouriteLocations();
                     } else {
-                        Log.e("TAG", "Add favourte failed");
+                        Log.e("TAG", "Add favourite failed");
                     }
                 } else {
-                    Log.e("TAG", "Add favourte error");
+                    Log.e("TAG", "Add favourite error");
                 }
             }
 
@@ -86,13 +86,13 @@ public class FavouritePresenter implements FavourtieContract.Presenter {
                 if (response.isSuccessful()) {
                     boolean status = response.body().isStatus();
                     if (status) {
-                        Log.e("TAG", "Remove favourte success");
-                        getFavouriteLocations(); // Load location list
+                        Log.e("TAG", "Remove favourite success");
+                        getFavouriteLocations();
                     } else {
-                        Log.e("TAG", "Remove favourte failed");
+                        Log.e("TAG", "Remove favourite failed");
                     }
                 } else {
-                    Log.e("TAG", "Remove favourte error");
+                    Log.e("TAG", "Remove favourite error");
                 }
             }
 

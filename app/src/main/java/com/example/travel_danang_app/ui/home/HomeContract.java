@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface HomeContract {
     interface View {
-        void onDisplayLocations(List<Location> locations);
+        void displayLocations(List<Location> locations);
     }
 
     interface Presenter {
-        void onCallGetLocationsApi();
+        void getLocations();
 
         void addFavouriteLocation(int idLocation);
 

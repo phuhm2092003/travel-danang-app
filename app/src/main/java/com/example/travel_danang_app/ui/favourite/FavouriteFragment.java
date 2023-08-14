@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.travel_danang_app.adapter.LocationAdapter;
 import com.example.travel_danang_app.databinding.FragmentFavouriteBinding;
+import com.example.travel_danang_app.databinding.FragmentHomeBinding;
 import com.example.travel_danang_app.interfaces.ItemLocationClicked;
 import com.example.travel_danang_app.model.Location;
 import com.example.travel_danang_app.ui.home.HomeFragment;
@@ -30,8 +31,7 @@ public class FavouriteFragment extends Fragment implements FavourtieContract.Vie
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-        favouriteBinding = FragmentFavouriteBinding.inflate(layoutInflater);
+        favouriteBinding = FragmentFavouriteBinding.inflate(inflater, container, false);
         return favouriteBinding.getRoot();
     }
 
@@ -39,7 +39,7 @@ public class FavouriteFragment extends Fragment implements FavourtieContract.Vie
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initObjects();
-        setUpRecyclerView();
+        setUpFavouriteLocationsRecyclerView();
     }
 
     private void initObjects() {
@@ -47,28 +47,27 @@ public class FavouriteFragment extends Fragment implements FavourtieContract.Vie
         favouritePresenter.getFavouriteLocations();
     }
 
-    private void setUpRecyclerView() {
+    private void setUpFavouriteLocationsRecyclerView() {
         LinearLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
-        favouriteBinding.favouriteLocarionsrecyclerView.setLayoutManager(layoutManager);
+        favouriteBinding.faLocationsRecyclerView.setLayoutManager(layoutManager);
 
         locationAdapter = new LocationAdapter(this);
-        favouriteBinding.favouriteLocarionsrecyclerView.setAdapter(locationAdapter);
-        favouriteBinding.favouriteLocarionsrecyclerView.setNestedScrollingEnabled(false);
+        favouriteBinding.faLocationsRecyclerView.setAdapter(locationAdapter);
+        favouriteBinding.faLocationsRecyclerView.setNestedScrollingEnabled(false);
     }
 
     @Override
-    public void onDisplayFavouriteLocations(ArrayList<Location> locations) {
-        if(locations.isEmpty() || locations.size() == 0){
+    public void displayFavouriteLocations(ArrayList<Location> locations) {
+        if(locations.isEmpty()){
             favouriteBinding.locationsEmptyTextView.setVisibility(View.VISIBLE);
-            locationAdapter.setListLocation(null);
         }else {
             favouriteBinding.locationsEmptyTextView.setVisibility(View.GONE);
-            locationAdapter.setListLocation(locations);
         }
+        locationAdapter.setListLocation(locations);
     }
 
     @Override
-    public void onFavouriteLocationClick(boolean isFavourite, int idLocation) {
+    public void onFavouriteLocationClicked(boolean isFavourite, int idLocation) {
         if (isFavourite) {
             favouritePresenter.addFavouriteLocation(idLocation);
         } else {
@@ -77,7 +76,7 @@ public class FavouriteFragment extends Fragment implements FavourtieContract.Vie
     }
 
     @Override
-    public void onLaucnhDetailLocationActivity(Location location) {
+    public void onLaunchDetailLocationActivity(Location location) {
         Intent intent = new Intent(requireContext(), LocationDetailActivity.class);
         intent.putExtra(HomeFragment.EXTRA_OBJECT_LOCATION, location);
         startActivity(intent);

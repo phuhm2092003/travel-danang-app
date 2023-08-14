@@ -29,18 +29,20 @@ public class SearchPresenter implements SearchContract.Presenter {
     }
 
     @Override
-    public void getLocations(String searchInput) {
+    public void getLocationsSearch(String searchInput) {
         this.searchInput = searchInput;
         ArrayList<Location> listSearch = new ArrayList<>();
         if (!isUserSignIn()) return;
         if (UtilsDataInput.isEmptyData(searchInput)) {
             view.onSearchDisplayLocations(listSearch);
         } else {
+            // Get list location
             Call<ArrayList<Location>> call = apiService.getLocations(currentUser.getUid());
             call.enqueue(new Callback<ArrayList<Location>>() {
                 @Override
                 public void onResponse(Call<ArrayList<Location>> call, Response<ArrayList<Location>> response) {
                     if (response.isSuccessful()) {
+                        // Search
                         ArrayList<Location> list = response.body();
                         for (Location location : list){
                             if(location.getTenDiaDiem().toLowerCase().contains(searchInput.toLowerCase())){
@@ -72,7 +74,7 @@ public class SearchPresenter implements SearchContract.Presenter {
                     boolean status = response.body().isStatus();
                     if (status) {
                         Log.e("TAG", "Add favourte success");
-                        getLocations(searchInput);
+                        getLocationsSearch(searchInput);
                     } else {
                         Log.e("TAG", "Add favourte failed");
                     }
@@ -99,7 +101,7 @@ public class SearchPresenter implements SearchContract.Presenter {
                     boolean status = response.body().isStatus();
                     if (status) {
                         Log.e("TAG", "Remove favourte success");
-                        getLocations(searchInput);
+                        getLocationsSearch(searchInput);
                     } else {
                         Log.e("TAG", "Remove favourte failed");
                     }

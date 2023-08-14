@@ -28,8 +28,12 @@ public class HomePresenter implements HomeContract.Presenter {
         this.currentUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
+    private boolean isUserSignIn() {
+        return currentUser != null;
+    }
+
     @Override
-    public void onCallGetLocationsApi() {
+    public void getLocations() {
         if (!isUserSignIn()) return;
         Call<ArrayList<Location>> call = apiService.getLocations(currentUser.getUid());
         call.enqueue(new Callback<ArrayList<Location>>() {
@@ -37,7 +41,7 @@ public class HomePresenter implements HomeContract.Presenter {
             public void onResponse(Call<ArrayList<Location>> call, Response<ArrayList<Location>> response) {
                 if (response.isSuccessful()) {
                     ArrayList<Location> list = response.body();
-                    view.onDisplayLocations(list);
+                    view.displayLocations(list);
                 } else {
                     Log.e("TAG", "Call get location API error: " + response.message());
                 }
@@ -60,13 +64,13 @@ public class HomePresenter implements HomeContract.Presenter {
                 if (response.isSuccessful()) {
                     boolean status = response.body().isStatus();
                     if (status) {
-                        Log.e("TAG", "Add favourte success");
-                        onCallGetLocationsApi(); // Load location list
+                        Log.e("TAG", "Add favourite success");
+                        getLocations();
                     } else {
-                        Log.e("TAG", "Add favourte failed");
+                        Log.e("TAG", "Add favourite failed");
                     }
                 } else {
-                    Log.e("TAG", "Add favourte error");
+                    Log.e("TAG", "Add favourite error");
                 }
             }
 
@@ -87,13 +91,13 @@ public class HomePresenter implements HomeContract.Presenter {
                 if (response.isSuccessful()) {
                     boolean status = response.body().isStatus();
                     if (status) {
-                        Log.e("TAG", "Remove favourte success");
-                        onCallGetLocationsApi(); // Load location list
+                        Log.e("TAG", "Remove favourite success");
+                        getLocations();
                     } else {
-                        Log.e("TAG", "Remove favourte failed");
+                        Log.e("TAG", "Remove favourite failed");
                     }
                 } else {
-                    Log.e("TAG", "Remove favourte error");
+                    Log.e("TAG", "Remove favourite error");
                 }
             }
 
@@ -103,9 +107,4 @@ public class HomePresenter implements HomeContract.Presenter {
             }
         });
     }
-
-    private boolean isUserSignIn() {
-        return currentUser != null;
-    }
-
 }

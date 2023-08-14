@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface FavourtieContract {
     interface View {
-        void onDisplayFavouriteLocations(ArrayList<Location> locations);
+        void displayFavouriteLocations(ArrayList<Location> locations);
     }
 
     interface Presenter {

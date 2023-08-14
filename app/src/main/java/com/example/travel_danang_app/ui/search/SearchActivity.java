@@ -28,18 +28,10 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         super.onCreate(savedInstanceState);
         searchBinding = ActivitySearchBinding.inflate(getLayoutInflater());
         setContentView(searchBinding.getRoot());
+
         setUpRecyclerView();
         searchPresenter = new SearchPresenter(this);
-        searchBinding.searchButton.setOnClickListener(view ->{
-            String searchInput = searchBinding.searchEditText.getText().toString().toString();
-            searchPresenter.getLocations(searchInput);
-        });
-        searchBinding.backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
+        setListeners();
 
     }
 
@@ -52,19 +44,28 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         searchBinding.locationsSearchRecyclerView.setNestedScrollingEnabled(false);
     }
 
-    @Override
-    public void onSearchDisplayLocations(List<Location> locations) {
-        if(locations.isEmpty() || locations.size() == 0){
-            searchBinding.locationsEmptyTextView.setVisibility(View.VISIBLE);
-            locationAdapter.setListLocation(null);
-        }else {
-            searchBinding.locationsEmptyTextView.setVisibility(View.GONE);
-            locationAdapter.setListLocation(locations);
-        }
+    private void setListeners() {
+        searchBinding.searchButton.setOnClickListener(view -> onSearchButtonClicked());
+        searchBinding.backButton.setOnClickListener(view -> onBackPressed());
+    }
+
+    private void onSearchButtonClicked() {
+        String searchInput = searchBinding.searchEditText.getText().toString().trim();
+        searchPresenter.getLocationsSearch(searchInput);
     }
 
     @Override
-    public void onFavouriteLocationClick(boolean isFavourite, int idLocation) {
+    public void onSearchDisplayLocations(List<Location> locations) {
+        if (locations.isEmpty()) {
+            searchBinding.locationsEmptyTextView.setVisibility(View.VISIBLE);
+        } else {
+            searchBinding.locationsEmptyTextView.setVisibility(View.GONE);
+        }
+        locationAdapter.setListLocation(locations);
+    }
+
+    @Override
+    public void onFavouriteLocationClicked(boolean isFavourite, int idLocation) {
         if (isFavourite) {
             searchPresenter.addFavouriteLocation(idLocation);
         } else {
@@ -73,7 +74,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     }
 
     @Override
-    public void onLaucnhDetailLocationActivity(Location location) {
+    public void onLaunchDetailLocationActivity(Location location) {
         Intent intent = new Intent(this, LocationDetailActivity.class);
         intent.putExtra(HomeFragment.EXTRA_OBJECT_LOCATION, location);
         startActivity(intent);

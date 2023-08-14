@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment implements HomeContract.View, ItemLocationClicked {
-    public static final String EXTRA_OBJECT_LOCATION = "location";
+    public static final String EXTRA_OBJECT_LOCATION = "LocationDetail";
     private FragmentHomeBinding homeBinding;
     private HomePresenter homePresenter;
     private LocationAdapter locationAdapter;
@@ -46,16 +46,14 @@ public class HomeFragment extends Fragment implements HomeContract.View, ItemLoc
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initObjects();
-        setUpImageSlider();
-        setUpRecyclerView();
-        homeBinding.searchEditText.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    launchSearchActivity();
-                }
-                return false;
+        setListImageSlider();
+        setUplocationsRecyclerView();
+
+        homeBinding.searchEditText.setOnTouchListener((view1, motionEvent) -> {
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                launchSearchActivity();
             }
+            return false;
         });
     }
 
@@ -65,16 +63,16 @@ public class HomeFragment extends Fragment implements HomeContract.View, ItemLoc
 
     private void initObjects() {
         homePresenter = new HomePresenter(this);
-        homePresenter.onCallGetLocationsApi();
+        homePresenter.getLocations();
     }
 
-    private void setUpImageSlider() {
-        ArrayList<SlideModel> photos = getListImageSlider();
+    private void setListImageSlider() {
+        ArrayList<SlideModel> photos = getPhotos();
         homeBinding.imageSlider.setImageList(photos);
     }
 
     @NonNull
-    private ArrayList<SlideModel> getListImageSlider() {
+    private ArrayList<SlideModel> getPhotos() {
         ArrayList<SlideModel> photos = new ArrayList<>();
         photos.add(new SlideModel("https://liontrip.vn/wp-content/uploads/2022/06/Tour-du-li%CC%A3ch-Da%CC%80-Na%CC%86%CC%83ng-_-Du-li%CC%A3ch-Lion-Trip.png", "", ScaleTypes.FIT));
         photos.add(new SlideModel("https://static.vinwonders.com/production/wkxKquWj-nha-co-hoi-an.jpg", "", ScaleTypes.CENTER_CROP));
@@ -84,7 +82,7 @@ public class HomeFragment extends Fragment implements HomeContract.View, ItemLoc
         return photos;
     }
 
-    private void setUpRecyclerView() {
+    private void setUplocationsRecyclerView() {
         LinearLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         homeBinding.locationsRecyclerView.setLayoutManager(layoutManager);
 
@@ -94,12 +92,12 @@ public class HomeFragment extends Fragment implements HomeContract.View, ItemLoc
     }
 
     @Override
-    public void onDisplayLocations(List<Location> locations) {
+    public void displayLocations(List<Location> locations) {
         locationAdapter.setListLocation(locations);
     }
 
     @Override
-    public void onFavouriteLocationClick(boolean isFavourite, int idLocation) {
+    public void onFavouriteLocationClicked(boolean isFavourite, int idLocation) {
         if (isFavourite) {
             homePresenter.addFavouriteLocation(idLocation);
         } else {
@@ -108,7 +106,7 @@ public class HomeFragment extends Fragment implements HomeContract.View, ItemLoc
     }
 
     @Override
-    public void onLaucnhDetailLocationActivity(Location location) {
+    public void onLaunchDetailLocationActivity(Location location) {
         Intent intent = new Intent(getContext(), LocationDetailActivity.class);
         intent.putExtra(EXTRA_OBJECT_LOCATION, location);
         startActivity(intent);
@@ -117,6 +115,6 @@ public class HomeFragment extends Fragment implements HomeContract.View, ItemLoc
     @Override
     public void onResume() {
         super.onResume();
-        homePresenter.onCallGetLocationsApi();
+        homePresenter.getLocations();
     }
 }

@@ -10,7 +10,7 @@ public interface SearchContract {
     }
 
     interface Presenter {
-        void getLocations(String searchInput);
+        void getLocationsSearch(String searchInput);
         void addFavouriteLocation(int idLocation);
 
         void removeFavouriteLocation(int idLocation);

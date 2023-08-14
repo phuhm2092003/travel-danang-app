@@ -11,8 +11,7 @@ import com.example.travel_danang_app.R;
 import com.example.travel_danang_app.databinding.ItemLocationBinding;
 import com.example.travel_danang_app.interfaces.ItemLocationClicked;
 import com.example.travel_danang_app.model.Location;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
 
 import java.util.List;
 
@@ -53,22 +52,17 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         holder.locationBinding.nameLocation.setText(location.getTenDiaDiem());
         holder.locationBinding.aboutLocation.setText(location.getGioiThieu());
         holder.locationBinding.addressLocation.setText(location.getViTri());
-
-        if (location.getIsFavourite() == 1) {
-            holder.locationBinding.favouriteCheckButton.setChecked(true);
-        } else {
-            holder.locationBinding.favouriteCheckButton.setChecked(false);
-        }
+        holder.locationBinding.favouriteCheckButton.setChecked(location.getIsFavourite() == 1);
 
         holder.locationBinding.favouriteCheckButton.setOnClickListener(view -> {
             if (holder.locationBinding.favouriteCheckButton.isChecked()) {
-                itemLocationClicked.onFavouriteLocationClick(true, location.getId());
+                itemLocationClicked.onFavouriteLocationClicked(true, location.getId());
             } else {
-                itemLocationClicked.onFavouriteLocationClick(false, location.getId());
+                itemLocationClicked.onFavouriteLocationClicked(false, location.getId());
             }
         });
 
-        holder.itemView.setOnClickListener(view -> itemLocationClicked.onLaucnhDetailLocationActivity(location));
+        holder.itemView.setOnClickListener(view -> itemLocationClicked.onLaunchDetailLocationActivity(location));
     }
 
     @Override
