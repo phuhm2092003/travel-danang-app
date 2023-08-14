@@ -24,6 +24,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SettingFragment extends Fragment {
     public static final String DIALOG_MESSAGE = "Bạn có muốn đăng xuất?";
+    public static final String YES = "Có";
+    public static final String CANCLE = "Huỷ";
     private FragmentSettingBinding settingBinding;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
@@ -75,13 +77,13 @@ public class SettingFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMessage(DIALOG_MESSAGE);
 
-        builder.setPositiveButton("Có", (dialogInterface, i) -> {
+        builder.setPositiveButton(YES, (dialogInterface, i) -> {
             firebaseAuth.signOut();
             startActivity(new Intent(requireContext(), SignInActivity.class));
             requireActivity().finishAffinity();
         });
 
-        builder.setNegativeButton("Huỷ", (dialogInterface, i) -> {
+        builder.setNegativeButton(CANCLE, (dialogInterface, i) -> {
         });
 
         Dialog dialog = builder.create();
