@@ -18,9 +18,10 @@ public class ForgotPasswordPresenter implements ForgotPasswordContract.Presenter
             return;
         }
 
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         view.onShowLoading();
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        auth.sendPasswordResetEmail(emailAddress).addOnCompleteListener(task -> {
+
+        mAuth.sendPasswordResetEmail(emailAddress).addOnCompleteListener(task -> {
             view.onHideLoading();
             if (task.isSuccessful()) {
                 view.onSendEmailForgotPasswordSuccess();

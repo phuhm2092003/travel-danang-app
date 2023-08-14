@@ -29,7 +29,7 @@
         <activity
             android:name=".ui.forgotpass.ForgotPasswordActivity"
             android:exported="false"
-            android:theme="@style/Theme.ForgotPassword" />
+            android:theme="@style/Theme.ForgotPasswordActivity" />
         <activity
             android:name=".ui.signup.SignUpActivity"
             android:exported="false"

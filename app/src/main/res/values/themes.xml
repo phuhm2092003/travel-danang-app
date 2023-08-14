@@ -41,7 +41,7 @@
     </style>
 
     <!-- Forgot password theme. -->
-    <style name="Theme.ForgotPassword" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.ForgotPasswordActivity" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/PrimaryColor</item>
         <item name="colorPrimaryVariant">@color/PrimaryColor</item>
